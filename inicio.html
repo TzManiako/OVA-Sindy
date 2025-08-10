@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suba en Sintonía - Un Desafío por el Silencio y la Naturaleza</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        .main-header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.9) 0%, 
+                rgba(118, 75, 162, 0.9) 100%);
+            overflow: hidden;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 40px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .floating-icon:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 25%; right: 15%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+        .floating-icon:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+        .floating-icon:nth-child(6) { top: 40%; right: 5%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+            75% { transform: translateY(-30px) rotate(3deg); }
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .main-title {
+            font-size: 4em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: titleSlideIn 1.5s ease-out;
+        }
+
+        .main-subtitle {
+            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            animation: subtitleSlideIn 1.8s ease-out;
+        }
+
+        @keyframes titleSlideIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes subtitleSlideIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* VIDEO CONTAINER */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: videoAppear 2s ease-out;
+        }
+
+        @keyframes videoAppear {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .video-scene {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* YOUTUBE VIDEO */
+        .youtube-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .youtube-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* OVERLAY PARA CONTROLES PERSONALIZADOS */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* PREGUNTA Y BOTÓN */
+        .question-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            z-index: 10;
+            border-radius: 15px;
+        }
+
+        .question-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .question-text {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .challenge-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.4);
+            animation: buttonPulse 2s ease-in-out infinite;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .challenge-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.6);
+            animation: none;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* CONTROLES PERSONALIZADOS */
+        .custom-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 15;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .custom-controls.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        /* BOTÓN DE ACTIVACIÓN */
+        .activation-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .activation-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.6);
+        }
+
+        .activation-text {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .activation-subtitle {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5em;
+            }
+
+            .main-subtitle {
+                font-size: 1.2em;
+            }
+
+            .video-container {
+                height: 300px;
+                margin: 20px auto;
+            }
+
+            .question-text {
+                font-size: 1.4em;
+            }
+
+            .challenge-button {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+
+            .floating-icon {
+                font-size: 30px;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        /* TRANSITION EFFECTS */
+        .fade-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body>
+    <div class="fade-transition" id="fadeTransition"></div>
+    
+    <div class="main-header">
+        <div class="background-animation">
+            <div class="floating-icon">🌳</div>
+            <div class="floating-icon">🐦</div>
+            <div class="floating-icon">💧</div>
+            <div class="floating-icon">🍃</div>
+            <div class="floating-icon">🦋</div>
+            <div class="floating-icon">🌸</div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="main-title">🎵 Suba en Sintonía 🌿</h1>
+            <p class="main-subtitle">Un Desafío por el Silencio y la Naturaleza</p>
+
+            <div class="video-container">
+                <div class="video-scene">
+                    <!-- Overlay de Activación -->
+                    <div class="activation-overlay" id="activationOverlay">
+                        <button class="play-button" onclick="startExperience()">▶️</button>
+                        <div class="activation-text">Iniciar Experiencia</div>
+                        <div class="activation-subtitle">Descubre el contraste sonoro de Suba</div>
+                    </div>
+
+                    <!-- YouTube Video Container -->
+                    <div class="youtube-container">
+                        <iframe 
+                            id="youtubeVideo"
+                            class="youtube-iframe"
+                            src="https://www.youtube.com/embed/UzMWb-CcFZs?enablejsapi=1&controls=0&showinfo=0&rel=0&modestbranding=1&cc_load_policy=0&iv_load_policy=3&fs=0&disablekb=1&start=0"
+                            allowfullscreen>
+                        </iframe>
+                        
+                        <!-- Overlay para interceptar clics -->
+                        <div class="video-overlay" id="videoOverlay"></div>
+                    </div>
+
+                    <!-- Controles Personalizados -->
+                    <div class="custom-controls" id="customControls">
+                        <button class="control-btn" id="playPauseBtn" onclick="toggleVideo()">⏸️</button>
+                        <button class="control-btn" onclick="restartVideo()">🔄</button>
+                        <button class="control-btn" onclick="showQuestion()">❓</button>
+                    </div>
+
+                    <!-- Pregunta Final -->
+                    <div class="question-overlay" id="questionOverlay">
+                        <div class="question-text">
+                            ¿Estamos perdiendo el sonido de la naturaleza en Suba?<br>
+                            ¿Cómo podemos recuperarlo?
+                        </div>
+                        <button class="challenge-button" onclick="acceptChallenge()">
+                            🎯 ¡Acepta el Desafío!
+                        </button>
+                        <button class="control-btn" onclick="hideQuestion()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.8);">✖️</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let videoState = {
+            isPlaying: false,
+            isStarted: false
+        };
+
+        // Variables para YouTube API
+        let youtubePlayer = null;
+        let isYouTubeAPIReady = false;
+
+        // Cargar YouTube API
+        function loadYouTubeAPI() {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        // Función llamada automáticamente por YouTube API
+        function onYouTubeIframeAPIReady() {
+            isYouTubeAPIReady = true;
+            youtubePlayer = new YT.Player('youtubeVideo', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onEnd': onPlayerEnd
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player está listo
+            console.log('YouTube player ready');
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                videoState.isPlaying = true;
+                document.getElementById('playPauseBtn').innerHTML = '⏸️';
+            } else if (event.data == YT.PlayerState.PAUSED) {
+                videoState.isPlaying = false;
+                document.getElementById('playPauseBtn').innerHTML = '▶️';
+            }
+        }
+
+        function onPlayerEnd(event) {
+            // Video terminó - mostrar pregunta automáticamente
+            setTimeout(() => {
+                showQuestion();
+            }, 1000);
+        }
+
+        function startExperience() {
+            if (!isYouTubeAPIReady) {
+                alert('Cargando reproductor de video...');
+                return;
+            }
+
+            videoState.isStarted = true;
+            
+            // Ocultar overlay de activación
+            document.getElementById('activationOverlay').classList.add('hidden');
+            
+            // Comenzar reproducción
+            if (youtubePlayer && youtubePlayer.playVideo) {
+                youtubePlayer.playVideo();
+                videoState.isPlaying = true;
+                document.getElementById('playPauseBtn').innerHTML = '⏸️';
+            }
+        }
+
+        function toggleVideo() {
+            if (!videoState.isStarted) {
+                startExperience();
+                return;
+            }
+
+            if (!youtubePlayer) return;
+
+            if (videoState.isPlaying) {
+                youtubePlayer.pauseVideo();
+            } else {
+                youtubePlayer.playVideo();
+            }
+        }
+
+        function restartVideo() {
+            if (!youtubePlayer) return;
+            
+            youtubePlayer.seekTo(0);
+            youtubePlayer.playVideo();
+            hideQuestion();
+        }
+
+        function showQuestion() {
+            document.getElementById('questionOverlay').classList.add('show');
+            document.getElementById('customControls').classList.add('hidden');
+            
+            // Pausar video si está reproduciéndose
+            if (youtubePlayer && videoState.isPlaying) {
+                youtubePlayer.pauseVideo();
+            }
+        }
+
+        function hideQuestion() {
+            document.getElementById('questionOverlay').classList.remove('show');
+            document.getElementById('customControls').classList.remove('hidden');
+        }
+
+        function acceptChallenge() {
+            // Efecto de transición
+            const fadeTransition = document.getElementById('fadeTransition');
+            fadeTransition.classList.add('active');
+            
+            // Pausar video
+            if (youtubePlayer) {
+                youtubePlayer.pauseVideo();
+            }
+            
+            setTimeout(() => {
+                // Navegar a la Fase 1
+                window.location.href = 'fase1/index.html';
+            }, 1000);
+        }
+
+        // Inicializar cuando cargue la página
+        window.addEventListener('load', function() {
+            // Cargar YouTube API después de un breve delay
+            setTimeout(() => {
+                loadYouTubeAPI();
+            }, 1000);
+
+            // Mostrar automáticamente la pregunta después de 30 segundos si no se ha interactuado
+            setTimeout(() => {
+                if (!videoState.isStarted) {
+                    showQuestion();
+                }
+            }, 30000);
+        });
+
+        // Interceptar clics en el video overlay para controles personalizados
+        document.getElementById('videoOverlay').addEventListener('click', function(e) {
+            if (videoState.isStarted) {
+                toggleVideo();
+            } else {
+                startExperience();
+            }
+        });
+
+        // Limpiar al salir de la página
+        window.addEventListener('beforeunload', function() {
+            if (youtubePlayer) {
+                youtubePlayer.destroy();
+            }
+        });
+    </script>
+</body>
+</html>

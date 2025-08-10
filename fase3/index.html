@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 3: Propón Soluciones - Suba en Sintonía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .phase-title {
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .tool-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tool-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ecf0f1;
+        }
+
+        .tool-icon {
+            font-size: 40px;
+            margin-right: 20px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #e67e22, #d35400);
+        }
+
+        .tool-header h3 {
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        /* PIZARRA COLABORATIVA */
+        .brainstorm-board {
+            min-height: 500px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            border: 3px dashed #bdc3c7;
+            overflow: hidden;
+        }
+
+        .board-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(52, 152, 219, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 80%, rgba(46, 204, 113, 0.1) 2px, transparent 2px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+        .board-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+        }
+
+        .add-idea-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #3498db;
+        }
+
+        .idea-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .idea-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .idea-input:focus {
+            border-color: #3498db;
+        }
+
+        .category-select {
+            padding: 12px 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 25px;
+            background: white;
+            font-size: 16px;
+            outline: none;
+            min-width: 150px;
+        }
+
+        .add-idea-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .add-idea-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .ideas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .idea-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: grab;
+        }
+
+        .idea-card:hover {
+            transform: translateY(-3px) rotate(1deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .idea-card.dragging {
+            transform: rotate(5deg);
+            opacity: 0.8;
+            cursor: grabbing;
+        }
+
+        .idea-card.educacion { border-left-color: #3498db; }
+        .idea-card.tecnologia { border-left-color: #9b59b6; }
+        .idea-card.comunidad { border-left-color: #2ecc71; }
+        .idea-card.regulacion { border-left-color: #e74c3c; }
+        .idea-card.infraestructura { border-left-color: #f39c12; }
+
+        .idea-text {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .idea-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+
+        .idea-category {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .vote-section {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vote-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .vote-count {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* SIMULADOR DE IMPACTO */
+        .simulator-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .map-simulator {
+            background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 50%, #90EE90 100%);
+            border-radius: 15px;
+            height: 400px;
+            position: relative;
+            border: 3px solid #2c3e50;
+            overflow: hidden;
+        }
+
+        .noise-zone {
+            position: absolute;
+            background: rgba(231, 76, 60, 0.6);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .noise-zone.reduced {
+            background: rgba(46, 204, 113, 0.6);
+        }
+
+        .zone1 { top: 20%; left: 15%; width: 120px; height: 120px; }
+        .zone2 { top: 50%; right: 20%; width: 100px; height: 100px; }
+        .zone3 { bottom: 25%; left: 25%; width: 80px; height: 80px; }
+
+        .solution-elements {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .solution-elements.active {
+            opacity: 1;
+        }
+
+        .tree-barrier {
+            position: absolute;
+            bottom: 0;
+            left: 40%;
+            width: 20%;
+            height: 60px;
+            background: linear-gradient(to top, #8B4513, #228B22);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .sound-wall {
+            position: absolute;
+            top: 30%;
+            right: 10%;
+            width: 10px;
+            height: 100px;
+            background: #95a5a6;
+            border-radius: 5px;
+        }
+
+        .quiet-sign {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: #f1c40f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .controls-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .solution-item {
+            background: white;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: grab;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .solution-item:hover {
+            border-color: #3498db;
+            transform: translateX(5px);
+        }
+
+        .solution-item.dragging {
+            cursor: grabbing;
+            opacity: 0.7;
+            transform: rotate(5deg);
+        }
+
+        .solution-item.applied {
+            background: #d5f4e6;
+            border-color: #2ecc71;
+            opacity: 0.7;
+        }
+
+        .decibel-display {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .decibel-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #e74c3c;
+            transition: color 0.5s ease;
+        }
+
+        .decibel-number.good {
+            color: #2ecc71;
+        }
+
+        .decibel-number.moderate {
+            color: #f39c12;
+        }
+
+        .impact-meter {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .impact-fill {
+            height: 100%;
+            background: linear-gradient(to right, #e74c3c, #f39c12, #2ecc71);
+            border-radius: 10px;
+            width: 85%;
+            transition: width 0.5s ease;
+        }
+
+        /* FORMULARIO DE PROPUESTA */
+        .proposal-form {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #3498db;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-proposal-btn {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-proposal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .simulator-container {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-panel {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .idea-input-group {
+                flex-direction: column;
+            }
+
+            .ideas-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tool-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* ANIMACIONES */
+        @keyframes ideaAppear {
+            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .idea-card.new {
+            animation: ideaAppear 0.5s ease-out;
+        }
+
+        @keyframes impactAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .impact-animation {
+            animation: impactAnimation 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Suba en Sintonía 🌿</h1>
+            <p>Un Desafío por el Silencio y la Naturaleza</p>
+        </div>
+
+        <div class="phase-title">
+            <h2>Fase 3: Nuestro plan para Suba en Sintonía</h2>
+            <p>Conceptualiza y diseña una solución real y sostenible</p>
+        </div>
+
+        <div class="tools-grid">
+            <!-- PIZARRA COLABORATIVA -->
+            <div class="tool-section">
+                <div class="tool-header">
+                    <div class="tool-icon">💡</div>
+                    <div>
+                        <h3>Pizarra de Ideas Colaborativa</h3>
+                        <p>Comparte y vota por las mejores ideas para reducir el ruido en Suba</p>
+                    </div>
+                </div>
+
+                <div class="brainstorm-board">
+                    <div class="board-background"></div>
+                    <div class="board-content">
+                        <div class="add-idea-section">
+                            <h4>💭 Agregar Nueva Idea</h4>
+                            <div class="idea-input-group">
+                                <input type="text" class="idea-input" id="ideaInput" placeholder="Escribe tu idea para reducir el ruido en Suba..." maxlength="150">
+                                <select class="category-select" id="categorySelect">
+                                    <option value="educacion">📚 Educación</option>
+                                    <option value="tecnologia">🔧 Tecnología</option>
+                                    <option value="comunidad">👥 Comunidad</option>
+                                    <option value="regulacion">⚖️ Regulación</option>
+                                    <option value="infraestructura">🏗️ Infraestructura</option>
+                                </select>
+                                <button class="add-idea-btn" onclick="addIdea()">Agregar Idea</button>
+                            </div>
+                            <p style="font-size: 14px; color: #7f8c8d; margin: 0;">💡 Tip: Sé específico y piensa en soluciones realizables para Suba</p>
+                        </div>
+
+                        <div class="ideas-container" id="ideasContainer">
+                            <!-- Ideas precargadas -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULADOR DE IMPACTO -->
+            <div class="tool-section">
+                <div class="tool-header">
+                    <div class="tool-icon">🎯</div>
+                    <div>
+                        <h3>Simulador de Impacto</h3>
+                        <p>Visualiza cómo tus soluciones pueden reducir el ruido en Suba</p>
+                    </div>
+                </div>
+
+                <div class="simulator-container">
+                    <div class="map-simulator" id="mapSimulator">
+                        <div class="noise-zone zone1" data-zone="1">
+                            <span>85 dB</span>
+                        </div>
+                        <div class="noise-zone zone2" data-zone="2">
+                            <span>78 dB</span>
+                        </div>
+                        <div class="noise-zone zone3" data-zone="3">
+                            <span>72 dB</span>
+                        </div>
+
+                        <div class="solution-elements" id="solutionElements">
+                            <div class="tree-barrier"></div>
+                            <div class="sound-wall"></div>
+                            <div class="quiet-sign">🤫</div>
+                        </div>
+                    </div>
+
+                    <div class="controls-panel">
+                        <h4>🔧 Elementos de Solución</h4>
+                        <p style="font-size: 14px; color: #7f8c8d; margin-bottom: 15px;">Arrastra los elementos al mapa para ver su impacto</p>
+
+                        <div class="solution-item" draggable="true" data-solution="trees" data-reduction="15">
+                            🌳 Barrera de Árboles<br>
+                            <small>-15 dB de reducción</small>
+                        </div>
+
+                        <div class="solution-item" draggable="true" data-solution="wall" data-reduction="20">
+                            🧱 Muro Acústico<br>
+                            <small>-20 dB de reducción</small>
+                        </div>
+
+                        <div class="solution-item" draggable="true" data-solution="signs" data-reduction="10">
+                            🚫 Señalización<br>
+                            <small>-10 dB de reducción</small>
+                        </div>
+
+                        <div class="solution-item" draggable="true" data-solution="pavement" data-reduction="8">
+                            🛣️ Pavimento Silencioso<br>
+                            <small>-8 dB de reducción</small>
+                        </div>
+
+                        <div class="solution-item" draggable="true" data-solution="schedule" data-reduction="25">
+                            ⏰ Horarios Restringidos<br>
+                            <small>-25 dB de reducción</small>
+                        </div>
+
+                        <div class="decibel-display">
+                            <div>Nivel Promedio de Ruido</div>
+                            <div class="decibel-number" id="averageDecibels">78</div>
+                            <div>dB</div>
+                            <div class="impact-meter">
+                                <div class="impact-fill" id="impactFill"></div>
+                            </div>
+                            <small id="impactStatus">Nivel Alto - Requiere Intervención</small>
+                        </div>
+
+                        <button class="add-idea-btn" onclick="resetSimulator()" style="width: 100%; margin-top: 15px;">
+                            🔄 Reiniciar Simulación
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULARIO DE PROPUESTA -->
+            <div class="tool-section">
+                <div class="tool-header">
+                    <div class="tool-icon">📋</div>
+                    <div>
+                        <h3>Guía de Propuesta de Solución</h3>
+                        <p>Estructura tu propuesta de manera profesional</p>
+                    </div>
+                </div>
+
+                <div class="proposal-form">
+                    <div class="form-group">
+                        <label for="proposalName">Nombre de la Propuesta:</label>
+                        <input type="text" id="proposalName" placeholder="Ej: Plan Verde Suba - Reducción de Ruido con Naturaleza">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proposalDescription">Descripción (¿En qué consiste?):</label>
+                        <textarea id="proposalDescription" placeholder="Describe detalladamente tu propuesta, cómo funcionaría y por qué es efectiva..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetAudience">Público Objetivo (¿A quién va dirigida?):</label>
+                        <select id="targetAudience">
+                            <option value="">Selecciona el público objetivo</option>
+                            <option value="estudiantes">Estudiantes de colegios</option>
+                            <option value="familias">Familias residentes</option>
+                            <option value="comerciantes">Comerciantes locales</option>
+                            <option value="autoridades">Autoridades locales</option>
+                            <option value="conductores">Conductores y transportistas</option>
+                            <option value="comunidad">Toda la comunidad</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resources">Materiales y Recursos Necesarios:</label>
+                        <textarea id="resources" placeholder="Lista los materiales, herramientas, personas, tiempo y presupuesto necesarios..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeline">Cronograma de Implementación:</label>
+                        <textarea id="timeline" placeholder="Describe las fases y tiempos de implementación (corto, mediano, largo plazo)..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expectedImpact">Impacto Esperado:</label>
+                        <textarea id="expectedImpact" placeholder="¿Qué cambios esperas lograr? ¿Cómo medirás el éxito de tu propuesta?"></textarea>
+                    </div>
+
+                    <button class="submit-proposal-btn" onclick="submitProposal()">
+                        🚀 Generar Propuesta Final
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATOS INICIALES
+        let ideasDatabase = [
+            {
+                id: 1,
+                text: "Crear jardines acústicos con plantas que absorban el ruido en los parques",
+                category: "infraestructura",
+                votes: 8,
+                author: "María S."
+            },
+            {
+                id: 2,
+                text: "Campañas educativas sobre 'Hora Silenciosa' de 7-8 PM",
+                category: "educacion",
+                votes: 12,
+                author: "Carlos R."
+            },
+            {
+                id: 3,
+                text: "App móvil para reportar infracciones de ruido en tiempo real",
+                category: "tecnologia",
+                votes: 15,
+                author: "Ana M."
+            },
+            {
+                id: 4,
+                text: "Multas más estrictas para vehículos con escapes modificados",
+                category: "regulacion",
+                votes: 6,
+                author: "Pedro L."
+            },
+            {
+                id: 5,
+                text: "Festivales de música acústica en espacios abiertos",
+                category: "comunidad",
+                votes: 9,
+                author: "Sofía V."
+            }
+        ];
+
+        let appliedSolutions = new Set();
+        let currentDecibels = 78;
+
+        // INICIALIZAR PIZARRA
+        function initializeBoard() {
+            renderIdeas();
+            updateSimulator();
+            initializeDragAndDrop();
+        }
+
+        // RENDERIZAR IDEAS
+        function renderIdeas() {
+            const container = document.getElementById('ideasContainer');
+            container.innerHTML = '';
+
+            // Ordenar por votos
+            const sortedIdeas = [...ideasDatabase].sort((a, b) => b.votes - a.votes);
+
+            sortedIdeas.forEach(idea => {
+                const ideaCard = document.createElement('div');
+                ideaCard.className = `idea-card ${idea.category}`;
+                ideaCard.innerHTML = `
+                    <div class="idea-text">${idea.text}</div>
+                    <div class="idea-meta">
+                        <span class="idea-category">${getCategoryName(idea.category)}</span>
+                        <div class="vote-section">
+                            <button class="vote-btn" onclick="voteIdea(${idea.id}, 1)">👍</button>
+                            <span class="vote-count">${idea.votes}</span>
+                            <button class="vote-btn" onclick="voteIdea(${idea.id}, -1)">👎</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(ideaCard);
+            });
+        }
+
+        // AGREGAR NUEVA IDEA
+        function addIdea() {
+            const input = document.getElementById('ideaInput');
+            const category = document.getElementById('categorySelect');
+            
+            if (input.value.trim() === '') {
+                alert('Por favor escribe una idea antes de agregarla.');
+                return;
+            }
+
+            const newIdea = {
+                id: Date.now(),
+                text: input.value.trim(),
+                category: category.value,
+                votes: 1,
+                author: "Tú"
+            };
+
+            ideasDatabase.unshift(newIdea);
+            input.value = '';
+            
+            renderIdeas();
+            
+            // Animar la nueva idea
+            const newCard = document.querySelector('.idea-card');
+            newCard.classList.add('new');
+        }
+
+        // VOTAR POR IDEA
+        function voteIdea(ideaId, voteValue) {
+            const idea = ideasDatabase.find(i => i.id === ideaId);
+            if (idea) {
+                idea.votes = Math.max(0, idea.votes + voteValue);
+                renderIdeas();
+            }
+        }
+
+        // OBTENER NOMBRE DE CATEGORÍA
+        function getCategoryName(category) {
+            const categories = {
+                educacion: "📚 Educación",
+                tecnologia: "🔧 Tecnología", 
+                comunidad: "👥 Comunidad",
+                regulacion: "⚖️ Regulación",
+                infraestructura: "🏗️ Infraestructura"
+            };
+            return categories[category] || category;
+        }
+
+        // INICIALIZAR DRAG AND DROP
+        function initializeDragAndDrop() {
+            const solutionItems = document.querySelectorAll('.solution-item');
+            const mapSimulator = document.getElementById('mapSimulator');
+
+            solutionItems.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                   this.classList.add('dragging');
+                   e.dataTransfer.setData('text/plain', this.dataset.solution);
+                   e.dataTransfer.setData('reduction', this.dataset.reduction);
+               });
+
+               item.addEventListener('dragend', function() {
+                   this.classList.remove('dragging');
+               });
+           });
+
+           mapSimulator.addEventListener('dragover', function(e) {
+               e.preventDefault();
+           });
+
+           mapSimulator.addEventListener('drop', function(e) {
+               e.preventDefault();
+               const solution = e.dataTransfer.getData('text/plain');
+               const reduction = parseInt(e.dataTransfer.getData('reduction'));
+               
+               applySolution(solution, reduction);
+           });
+       }
+
+       // APLICAR SOLUCIÓN
+       function applySolution(solution, reduction) {
+           if (!appliedSolutions.has(solution)) {
+               appliedSolutions.add(solution);
+               currentDecibels = Math.max(30, currentDecibels - reduction);
+               
+               // Marcar solución como aplicada
+               const solutionElement = document.querySelector(`[data-solution="${solution}"]`);
+               solutionElement.classList.add('applied');
+               
+               // Mostrar elementos visuales
+               document.getElementById('solutionElements').classList.add('active');
+               
+               // Actualizar zonas de ruido
+               updateNoiseZones();
+               updateSimulator();
+               
+               // Animación de impacto
+               document.getElementById('mapSimulator').classList.add('impact-animation');
+               setTimeout(() => {
+                   document.getElementById('mapSimulator').classList.remove('impact-animation');
+               }, 600);
+
+               // Mensaje de éxito
+               showImpactMessage(solution, reduction);
+           }
+       }
+
+       // ACTUALIZAR ZONAS DE RUIDO
+       function updateNoiseZones() {
+           const zones = document.querySelectorAll('.noise-zone');
+           zones.forEach(zone => {
+               const currentDb = parseInt(zone.textContent);
+               const newDb = Math.max(30, currentDb - 5);
+               zone.innerHTML = `<span>${newDb} dB</span>`;
+               
+               if (newDb <= 60) {
+                   zone.classList.add('reduced');
+               }
+           });
+       }
+
+       // ACTUALIZAR SIMULADOR
+       function updateSimulator() {
+           const decibelDisplay = document.getElementById('averageDecibels');
+           const impactFill = document.getElementById('impactFill');
+           const impactStatus = document.getElementById('impactStatus');
+           
+           decibelDisplay.textContent = currentDecibels;
+           
+           // Cambiar color según el nivel
+           decibelDisplay.className = 'decibel-number';
+           if (currentDecibels <= 50) {
+               decibelDisplay.classList.add('good');
+           } else if (currentDecibels <= 70) {
+               decibelDisplay.classList.add('moderate');
+           }
+           
+           // Actualizar barra de impacto (invertida: menos dB = más verde)
+           const fillPercentage = Math.max(10, 100 - currentDecibels);
+           impactFill.style.width = fillPercentage + '%';
+           
+           // Actualizar estado
+           if (currentDecibels <= 50) {
+               impactStatus.textContent = '✅ Excelente - Ambiente Saludable';
+               impactStatus.style.color = '#2ecc71';
+           } else if (currentDecibels <= 70) {
+               impactStatus.textContent = '⚠️ Moderado - Mejorable';
+               impactStatus.style.color = '#f39c12';
+           } else {
+               impactStatus.textContent = '❌ Alto - Requiere Intervención';
+               impactStatus.style.color = '#e74c3c';
+           }
+       }
+
+       // MOSTRAR MENSAJE DE IMPACTO
+       function showImpactMessage(solution, reduction) {
+           const messages = {
+               trees: `🌳 ¡Barrera de árboles aplicada! Los árboles absorben ${reduction} dB de ruido y mejoran la calidad del aire.`,
+               wall: `🧱 ¡Muro acústico instalado! Reduce ${reduction} dB bloqueando directamente las ondas sonoras.`,
+               signs: `🚫 ¡Señalización colocada! La concientización reduce ${reduction} dB al cambiar comportamientos.`,
+               pavement: `🛣️ ¡Pavimento silencioso instalado! La nueva superficie reduce ${reduction} dB del ruido de rodamiento.`,
+               schedule: `⏰ ¡Horarios restringidos implementados! Las regulaciones reducen ${reduction} dB en horas críticas.`
+           };
+           
+           const message = messages[solution] || `¡Solución aplicada! Reducción de ${reduction} dB.`;
+           
+           // Crear notificación temporal
+           const notification = document.createElement('div');
+           notification.style.cssText = `
+               position: fixed;
+               top: 20px;
+               right: 20px;
+               background: linear-gradient(45deg, #2ecc71, #27ae60);
+               color: white;
+               padding: 15px 20px;
+               border-radius: 10px;
+               box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+               z-index: 1000;
+               animation: slideInRight 0.5s ease-out;
+               max-width: 300px;
+               font-size: 14px;
+               line-height: 1.4;
+           `;
+           notification.textContent = message;
+           document.body.appendChild(notification);
+           
+           setTimeout(() => {
+               notification.style.animation = 'slideOutRight 0.5s ease-in';
+               setTimeout(() => {
+                   document.body.removeChild(notification);
+               }, 500);
+           }, 3000);
+       }
+
+       // REINICIAR SIMULADOR
+       function resetSimulator() {
+           appliedSolutions.clear();
+           currentDecibels = 78;
+           
+           // Restaurar soluciones
+           document.querySelectorAll('.solution-item').forEach(item => {
+               item.classList.remove('applied');
+           });
+           
+           // Ocultar elementos
+           document.getElementById('solutionElements').classList.remove('active');
+           
+           // Restaurar zonas
+           const zones = document.querySelectorAll('.noise-zone');
+           zones[0].innerHTML = '<span>85 dB</span>';
+           zones[1].innerHTML = '<span>78 dB</span>';
+           zones[2].innerHTML = '<span>72 dB</span>';
+           
+           zones.forEach(zone => {
+               zone.classList.remove('reduced');
+           });
+           
+           updateSimulator();
+       }
+
+       // ENVIAR PROPUESTA
+       function submitProposal() {
+           const name = document.getElementById('proposalName').value;
+           const description = document.getElementById('proposalDescription').value;
+           const audience = document.getElementById('targetAudience').value;
+           const resources = document.getElementById('resources').value;
+           const timeline = document.getElementById('timeline').value;
+           const impact = document.getElementById('expectedImpact').value;
+           
+           if (!name || !description || !audience || !resources) {
+               alert('Por favor completa todos los campos obligatorios.');
+               return;
+           }
+           
+           // Generar propuesta
+           const proposal = `
+# 🎯 PROPUESTA: ${name}
+
+## 📋 DESCRIPCIÓN
+${description}
+
+## 👥 PÚBLICO OBJETIVO
+${getAudienceDescription(audience)}
+
+## 🛠️ RECURSOS NECESARIOS
+${resources}
+
+## ⏱️ CRONOGRAMA
+${timeline || 'Por definir en fase de planificación detallada'}
+
+## 📊 IMPACTO ESPERADO
+${impact || 'Reducción significativa del ruido en la zona objetivo'}
+
+## 💡 IDEAS COLABORATIVAS MÁS VOTADAS
+${getTopIdeas()}
+
+## 🎯 SIMULACIÓN DE IMPACTO
+- Nivel actual promedio: 78 dB
+- Nivel proyectado: ${currentDecibels} dB
+- Reducción estimada: ${78 - currentDecibels} dB
+- Soluciones aplicadas: ${Array.from(appliedSolutions).join(', ')}
+
+---
+📅 Fecha: ${new Date().toLocaleDateString()}
+🏫 Proyecto: Suba en Sintonía
+👥 Equipo: [Tu nombre/equipo]
+           `;
+           
+           // Crear y descargar archivo
+           const blob = new Blob([proposal], { type: 'text/plain' });
+           const url = window.URL.createObjectURL(blob);
+           const a = document.createElement('a');
+           a.href = url;
+           a.download = `Propuesta_${name.replace(/\s+/g, '_')}.txt`;
+           a.click();
+           window.URL.revokeObjectURL(url);
+           
+           // Mostrar confirmación
+           alert('🎉 ¡Propuesta generada exitosamente!\n\nTu propuesta ha sido descargada. Ahora puedes presentarla a tu comunidad y comenzar la implementación.');
+       }
+
+       // OBTENER DESCRIPCIÓN DE AUDIENCIA
+       function getAudienceDescription(audience) {
+           const descriptions = {
+               estudiantes: "Estudiantes de instituciones educativas de Suba",
+               familias: "Familias residentes en el sector de Suba",
+               comerciantes: "Comerciantes y propietarios de negocios locales",
+               autoridades: "Autoridades locales y administración pública",
+               conductores: "Conductores, transportistas y motociclistas",
+               comunidad: "Toda la comunidad de Suba sin excepción"
+           };
+           return descriptions[audience] || audience;
+       }
+
+       // OBTENER TOP IDEAS
+       function getTopIdeas() {
+           return ideasDatabase
+               .sort((a, b) => b.votes - a.votes)
+               .slice(0, 3)
+               .map((idea, index) => `${index + 1}. ${idea.text} (${idea.votes} votos)`)
+               .join('\n');
+       }
+
+       // AGREGAR ESTILOS DE ANIMACIÓN
+       const style = document.createElement('style');
+       style.textContent = `
+           @keyframes slideInRight {
+               0% { transform: translateX(100%); opacity: 0; }
+               100% { transform: translateX(0); opacity: 1; }
+           }
+           @keyframes slideOutRight {
+               0% { transform: translateX(0); opacity: 1; }
+               100% { transform: translateX(100%); opacity: 0; }
+           }
+       `;
+       document.head.appendChild(style);
+
+       // INICIALIZAR TODO
+       window.addEventListener('load', function() {
+           initializeBoard();
+       });
+
+       // HACER ZONAS DE RUIDO CLICABLES PARA INFORMACIÓN
+       document.addEventListener('DOMContentLoaded', function() {
+           const noiseZones = document.querySelectorAll('.noise-zone');
+           noiseZones.forEach(zone => {
+               zone.addEventListener('click', function() {
+                   const zoneNumber = this.dataset.zone;
+                   const currentDb = parseInt(this.textContent);
+                   
+                   const zoneInfo = {
+                       1: "Zona Comercial - Avenida Suba: Alto tráfico vehicular y actividad comercial",
+                       2: "Zona Residencial - Barrio La Gaitana: Viviendas familiares y colegio",
+                       3: "Zona Verde - Humedal La Conejera: Área de conservación natural"
+                   };
+                   
+                   alert(`📍 ${zoneInfo[zoneNumber]}\n\n🔊 Nivel actual: ${currentDb} dB\n\n💡 Tip: Arrastra soluciones del panel para reducir el ruido en esta zona.`);
+               });
+           });
+       });
+   </script>
+</body>
+</html>

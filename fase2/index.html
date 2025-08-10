@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 2: Investiga y Descubre - Suba en Sintonía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .phase-title {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .detective-intro {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .detective-avatar {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: detectiveBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes detectiveBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sections-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ecf0f1;
+        }
+
+        .section-icon {
+            font-size: 40px;
+            margin-right: 20px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .section-header h3 {
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        /* BIBLIOTECA VIRTUAL */
+        .library-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ecf0f1;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: #7f8c8d;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-overlay {
+            background: rgba(255, 0, 0, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .video-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .video-duration {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .external-link-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-top: 8px;
+            margin-left: 5px;
+        }
+
+        /* LECTURAS */
+        .readings-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .reading-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #2ecc71;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .reading-item:hover {
+            background: rgba(46, 204, 113, 0.2);
+            transform: translateX(5px);
+        }
+
+        .reading-icon {
+            font-size: 30px;
+            margin-right: 20px;
+            min-width: 50px;
+        }
+
+        .reading-content h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .reading-content p {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .reading-type {
+            background: #2ecc71;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+        /* ENTREVISTAS DIGITALES */
+        .interview-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .character-card {
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .character-card:hover, .character-card.selected {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: #3498db;
+            transform: translateY(-5px);
+        }
+
+        .character-avatar {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .character-card h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .character-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .questions-panel {
+            background: rgba(241, 196, 15, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .questions-panel.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-btn {
+            background: white;
+            border: 2px solid #f1c40f;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .question-btn:hover {
+            background: #f1c40f;
+            color: white;
+        }
+
+        .answer-video {
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .answer-video.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* DIARIO DE CAMPO */
+        .field-diary {
+            text-align: center;
+        }
+
+        .diary-preview {
+            background: linear-gradient(45deg, #f39c12, #d35400);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diary-preview::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255, 255, 255, 0.1) 20px,
+                rgba(255, 255, 255, 0.1) 40px
+            );
+            animation: paperTexture 10s linear infinite;
+        }
+
+        @keyframes paperTexture {
+            0% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+
+        .diary-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+        }
+
+        .diary-instructions {
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #2ecc71;
+        }
+
+        .diary-instructions h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .diary-instructions ul {
+            color: #7f8c8d;
+            margin-left: 20px;
+        }
+
+        .diary-instructions li {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interview-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .library-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Suba en Sintonía 🌿</h1>
+            <p>Un Desafío por el Silencio y la Naturaleza</p>
+        </div>
+
+        <div class="phase-title">
+            <h2>Fase 2: ¡Manos a la obra, detectives sonoros!</h2>
+            <p>Recopila información para encontrar posibles soluciones</p>
+        </div>
+
+        <div class="detective-intro">
+            <div class="detective-avatar">🕵️‍♂️</div>
+            <h3>¡Bienvenido, Detective Sonoro!</h3>
+            <p>Tu misión es investigar a fondo la problemática del ruido en Suba. Utiliza las herramientas de investigación disponibles para recopilar información valiosa que te ayude a proponer soluciones efectivas.</p>
+        </div>
+
+        <div class="sections-grid">
+            <!-- BIBLIOTECA VIRTUAL -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h3>Biblioteca Virtual</h3>
+                        <p>Recursos de expertos y documentos especializados</p>
+                    </div>
+                </div>
+
+                <div class="library-tabs">
+                    <button class="tab-btn active" onclick="switchTab('videos')">🎥 Videos de Expertos</button>
+                    <button class="tab-btn" onclick="switchTab('readings')">📖 Lecturas Especializadas</button>
+                </div>
+
+                <div id="videos-tab" class="tab-content active">
+                    <div class="video-grid">
+                        <div class="video-card" onclick="openYouTubeVideo('biologo')">
+                            <div class="video-thumbnail">
+                                🌿
+                                <div class="play-overlay">▶️</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Dr. Carlos Ramírez - Biólogo CAR</h4>
+                                <p>Especialista en ecosistemas acuáticos habla sobre los humedales de Suba y su importancia para la biodiversidad urbana.</p>
+                                <span class="video-duration">8:45 min</span>
+                                <span class="external-link-badge">YouTube</span>
+                            </div>
+                        </div>
+
+                        <div class="video-card" onclick="openYouTubeVideo('ingeniero')">
+                            <div class="video-thumbnail">
+                                🔊
+                                <div class="play-overlay">▶️</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Ing. María González - Acústica</h4>
+                                <p>Ingeniera de sonido explica los decibelios, la medición del ruido y sus efectos en el ambiente urbano.</p>
+                                <span class="video-duration">6:20 min</span>
+                                <span class="external-link-badge">YouTube</span>
+                            </div>
+                        </div>
+
+                        <div class="video-card" onclick="openYouTubeVideo('medico')">
+                            <div class="video-thumbnail">
+                                👩‍⚕️
+                                <div class="play-overlay">▶️</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Dra. Ana Morales - Salud Auditiva</h4>
+                                <p>Médica especialista en otorrinolaringología sobre los efectos del ruido en la salud humana.</p>
+                                <span class="video-duration">7:15 min</span>
+                                <span class="external-link-badge">YouTube</span>
+                            </div>
+                        </div>
+
+                        <div class="video-card" onclick="openYouTubeVideo('comunidad')">
+                            <div class="video-thumbnail">
+                                👥
+                                <div class="play-overlay">▶️</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Testimonios de la Comunidad</h4>
+                                <p>Vecinos de Suba comparten sus experiencias y opiniones sobre la contaminación sonora en el barrio.</p>
+                                <span class="video-duration">5:30 min</span>
+                                <span class="external-link-badge">YouTube</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="readings-tab" class="tab-content">
+                    <div class="readings-list">
+                        <div class="reading-item" onclick="openReading('ley-ruido')">
+                            <div class="reading-icon">⚖️</div>
+                            <div class="reading-content">
+                                <h4>Ley de Control de Ruido en Colombia</h4>
+                                <p>Normativa nacional que regula los niveles de ruido permitidos en zonas urbanas y las sanciones por incumplimiento.</p>
+                            </div>
+                            <span class="reading-type">Legal</span>
+                        </div>
+
+                        <div class="reading-item" onclick="openReading('casos-exito')">
+                            <div class="reading-icon">🏆</div>
+                            <div class="reading-content">
+                                <h4>Casos de Éxito en Control de Ruido Urbano</h4>
+                                <p>Iniciativas exitosas en Barcelona, Medellín y Bogotá para reducir la contaminación sonora en ciudades.</p>
+                            </div>
+                            <span class="reading-type">Casos</span>
+                        </div>
+
+                        <div class="reading-item" onclick="openReading('tecnologias')">
+                            <div class="reading-icon">🔬</div>
+                            <div class="reading-content">
+                                <h4>Tecnologías para Mitigación del Ruido</h4>
+                                <p>Investigación sobre barreras acústicas, pavimentos silenciosos y tecnologías emergentes para reducir el ruido.</p>
+                            </div>
+                            <span class="reading-type">Técnico</span>
+                        </div>
+
+                        <div class="reading-item" onclick="openReading('impacto-social')">
+                            <div class="reading-icon">👥</div>
+                            <div class="reading-content">
+                                <h4>Impacto Social de la Contaminación Sonora</h4>
+                                <p>Estudio sobre cómo el ruido afecta la calidad de vida, el rendimiento escolar y las relaciones comunitarias.</p>
+                            </div>
+                            <span class="reading-type">Social</span>
+                        </div>
+
+                        <div class="reading-item" onclick="openReading('economia-ruido')">
+                            <div class="reading-icon">💰</div>
+                            <div class="reading-content">
+                                <h4>Economía del Ruido: Costos y Beneficios</h4>
+                                <p>Análisis económico de los costos de la contaminación sonora y los beneficios de implementar soluciones.</p>
+                            </div>
+                            <span class="reading-type">Económico</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ENTREVISTAS DIGITALES -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">🎤</div>
+                    <div>
+                        <h3>Entrevistas Digitales</h3>
+                        <p>Conversa con líderes comunitarios y expertos</p>
+                    </div>
+                </div>
+
+                <div class="interview-selector">
+                    <div class="character-card" onclick="selectCharacter('lider')">
+                        <span class="character-avatar">👨‍💼</span>
+                        <h4>Jorge Mendoza</h4>
+                        <p>Líder Comunitario de Suba</p>
+                    </div>
+
+                    <div class="character-card" onclick="selectCharacter('docente')">
+                        <span class="character-avatar">👩‍🏫</span>
+                        <h4>Profesora Carmen Ruiz</h4>
+                        <p>Docente del Colegio La Gaitana</p>
+                    </div>
+
+                    <div class="character-card" onclick="selectCharacter('joven')">
+                        <span class="character-avatar">👨‍🎓</span>
+                        <h4>Sebastián Torres</h4>
+                        <p>Joven Ambientalista</p>
+                    </div>
+
+                    <div class="character-card" onclick="selectCharacter('comerciante')">
+                        <span class="character-avatar">👩‍💼</span>
+                        <h4>María Elena Vargas</h4>
+                        <p>Comerciante Local</p>
+                    </div>
+                </div>
+
+                <div class="questions-panel" id="questionsPanel">
+                    <h4>🎯 Selecciona una pregunta para <span id="selectedCharacterName"></span>:</h4>
+                    <div id="questionsList"></div>
+                    <div class="answer-video" id="answerVideo">
+                        <h4 id="answerTitle"></h4>
+                        <div class="modal-video" id="answerVideoPlayer">🎬</div>
+                        <p id="answerText"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIARIO DE CAMPO -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <div>
+                        <h3>Diario de Campo</h3>
+                        <p>Herramienta para registrar observaciones en terreno</p>
+                    </div>
+                </div>
+
+                <div class="field-diary">
+                    <div class="diary-preview">
+                        <div class="diary-content">
+                            <h3>📋 Diario del Detective Sonoro</h3>
+                            <p>Herramienta digital para registrar tus observaciones sobre los sonidos de Suba</p>
+                            <div style="margin: 20px 0; font-size: 1.1em;">
+                                ✅ Plantillas de medición<br>
+                                ✅ Mapas para marcar ubicaciones<br>
+                                ✅ Formularios de registro<br>
+                                ✅ Guías de observación
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="download-btn" onclick="downloadDiary()">
+                        📥 Descargar Diario Digital
+                    </button>
+
+                    <div class="diary-instructions">
+                        <h4>📍 Instrucciones para usar el Diario:</h4>
+                        <ul>
+                            <li>Sal a diferentes zonas de Suba en horarios variados</li>
+                            <li>Registra los tipos de sonidos que escuchas</li>
+                            <li>Mide las distancias aproximadas a las fuentes de ruido</li>
+                            <li>Anota el nivel de molestia de 1 a 10</li>
+                            <li>Identifica posibles soluciones para cada problema</li>
+                            <li>Toma fotos y grabaciones de audio (opcional)</li>
+                            <li>Comparte tus hallazgos con el equipo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ENLACES DE YOUTUBE PARA VIDEOS DE EXPERTOS
+        const videoLinks = {
+            biologo: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Ecosistemas y biodiversidad
+            ingeniero: "https://www.youtube.com/watch?v=ZNno63ZO2Lw", // Acústica y medición de ruido
+            medico: "https://www.youtube.com/watch?v=BaW_jenozKc", // Efectos del ruido en la salud
+            comunidad: "https://www.youtube.com/watch?v=Y7dpJ0oseIA" // Testimonios comunitarios
+        };
+
+        // ENLACES PARA LECTURAS ESPECIALIZADAS
+        const readingLinks = {
+            'ley-ruido': 'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=30532',
+            'casos-exito': 'https://repositorio.cepal.org/server/api/core/bitstreams/03b0a8a1-3f2c-4c99-8a2e-8c1a4ad3e654/content',
+            'tecnologias': 'https://www.sciencedirect.com/science/article/pii/S0003682X19300696',
+            'impacto-social': 'https://www.who.int/publications/i/item/9789241515204',
+            'economia-ruido': 'https://www.eea.europa.eu/publications/noise-in-europe-2014'
+        };
+
+        // DATOS DE LAS ENTREVISTAS (mantienen el contenido original)
+        const interviewData = {
+            lider: {
+                name: "Jorge Mendoza",
+                questions: [
+                    "¿Cuáles son las principales quejas de ruido que reciben en la Junta de Acción Comunal?",
+                    "¿Qué iniciativas comunitarias se han implementado para reducir el ruido?",
+                    "¿Cómo podría involucrar más a los jóvenes en las soluciones ambientales?"
+                ],
+                answers: [
+                    "Las principales quejas provienen del tráfico pesado en la Av. Suba y las construcciones sin horarios establecidos. Recibimos entre 15-20 quejas mensuales, especialmente de familias con niños pequeños y adultos mayores.",
+                    "Hemos organizado 'Domingos sin Ruido' donde cerramos algunas vías al tráfico pesado. También creamos un comité de vigilancia ciudadana que reporta infracciones. Logramos reducir el ruido dominical en un 40%.",
+                    "Los jóvenes tienen energía y creatividad que necesitamos. Propondría crear un 'Equipo Verde' de estudiantes que monitoreen el ruido con apps móviles y propongan soluciones innovadoras como jardines acústicos."
+                ]
+            },
+            docente: {
+                name: "Profesora Carmen Ruiz",
+                questions: [
+                    "¿Cómo afecta el ruido el proceso de aprendizaje en el colegio?",
+                    "¿Qué estrategias han implementado para mitigar el impacto del ruido?",
+                    "¿Cómo involucra a los estudiantes en la educación ambiental?"
+                ],
+                answers: [
+                    "El ruido interrumpe constantemente las clases. Los estudiantes se distraen cada vez que pasa un bus o hay construcción. Hemos notado que el rendimiento baja en las aulas que dan a la Avenida Suba.",
+                    "Instalamos cortinas acústicas donadas por padres de familia y reorganizamos los horarios para las clases que requieren más concentración temprano en la mañana. También hacemos pausas activas cuando el ruido es muy fuerte.",
+                    "Creamos el proyecto 'Eco-Guardianes' donde los estudiantes miden el ruido con decibelímetros caseros y proponen soluciones. Ellos mismos diseñaron carteles pidiendo respeto por las zonas escolares."
+                ]
+            },
+            joven: {
+                name: "Sebastián Torres",
+                questions: [
+                    "¿Qué te motivó a involucrarte en temas ambientales?",
+                    "¿Cómo perciben los jóvenes la problemática del ruido en Suba?",
+                    "¿Qué soluciones propones desde la perspectiva juvenil?"
+                ],
+                answers: [
+                    "Vivo frente al humedal y cada año veo menos aves. Mi abuela me contaba que antes se escuchaban muchos tipos de cantos, ahora solo ruido de carros. Eso me motivó a estudiar el tema y actuar.",
+                    "Muchos jóvenes ni siquiera notan el problema porque crecimos con el ruido. Usamos audífonos constantemente para bloquearlo. Es como una generación 'sorda' al problema ambiental.",
+                    "Propongo crear una app donde los vecinos reporten ruido en tiempo real, como 'Waze' pero para contaminación sonora. También mapas de ruido colaborativos y retos virales para promover el 'silencio consciente'."
+                ]
+            },
+            comerciante: {
+                name: "María Elena Vargas",
+                questions: [
+                    "¿Cómo afecta el ruido a su negocio y clientes?",
+                    "¿Qué balance encuentra entre actividad comercial y tranquilidad?",
+                    "¿Estaría dispuesta a participar en iniciativas de reducción de ruido?"
+                ],
+                answers: [
+                    "El ruido ahuyenta clientes, especialmente adultos mayores que no pueden conversar tranquilos. Durante las horas pico es imposible hablar por teléfono. Algunos clientes se van sin comprar porque no soportan el bullicio.",
+                    "Entiendo que el comercio genera ruido, pero hay límites. Los vendedores ambulantes con parlantes muy fuertes nos perjudican a todos. Necesitamos regulación que proteja tanto el comercio como la calidad de vida.",
+                    "Claro que sí. Podríamos hacer 'Horas Silenciosas' donde bajamos la música y pedimos a los clientes hablar más bajo. También apoyaría campañas de educación y ponría carteles sobre el respeto acústico."
+                ]
+            }
+        };
+
+        let selectedCharacter = null;
+
+        // FUNCIÓN PARA CAMBIAR TABS
+        function switchTab(tabName) {
+            // Ocultar todos los tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar tab seleccionado
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // FUNCIÓN PARA ABRIR VIDEOS DE YOUTUBE
+        function openYouTubeVideo(videoType) {
+            const url = videoLinks[videoType];
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                alert('🎥 Video no disponible en este momento. Por favor, intenta más tarde.');
+            }
+        }
+
+        // FUNCIÓN PARA ABRIR LECTURAS
+        function openReading(readingType) {
+            const url = readingLinks[readingType];
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                alert('📖 Documento no disponible en este momento. Por favor, intenta más tarde.');
+            }
+        }
+
+        // FUNCIÓN PARA SELECCIONAR PERSONAJE
+        function selectCharacter(characterType) {
+            // Remover selección anterior
+            document.querySelectorAll('.character-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Seleccionar nuevo personaje
+            event.target.closest('.character-card').classList.add('selected');
+            selectedCharacter = characterType;
+
+            // Mostrar panel de preguntas
+            const questionsPanel = document.getElementById('questionsPanel');
+            questionsPanel.classList.add('active');
+
+            // Actualizar información del personaje
+            const characterData = interviewData[characterType];
+            document.getElementById('selectedCharacterName').textContent = characterData.name;
+
+            // Generar botones de preguntas
+            const questionsList = document.getElementById('questionsList');
+            questionsList.innerHTML = '';
+            
+            characterData.questions.forEach((question, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'question-btn';
+                btn.textContent = `${index + 1}. ${question}`;
+                btn.onclick = () => showAnswer(index);
+                questionsList.appendChild(btn);
+            });
+
+            // Ocultar respuesta anterior
+            document.getElementById('answerVideo').classList.remove('show');
+        }
+
+        // FUNCIÓN PARA MOSTRAR RESPUESTA
+        function showAnswer(questionIndex) {
+            const characterData = interviewData[selectedCharacter];
+            const answer = characterData.answers[questionIndex];
+            const question = characterData.questions[questionIndex];
+
+            document.getElementById('answerTitle').textContent = `Respuesta de ${characterData.name}:`;
+            document.getElementById('answerText').textContent = answer;
+            
+            document.getElementById('answerVideo').classList.add('show');
+        }
+
+        // FUNCIÓN PARA DESCARGAR DIARIO
+        function downloadDiary() {
+            // Simulación de descarga
+            const diaryContent = `
+# DIARIO DEL DETECTIVE SONORO - SUBA EN SINTONÍA
+
+## 📋 INFORMACIÓN PERSONAL
+- Nombre: ________________
+- Fecha: ________________
+- Equipo: ________________
+
+## 🗺️ REGISTRO DE OBSERVACIONES
+
+### UBICACIÓN 1: ________________
+- Hora: ________________
+- Tipo de zona: □ Residencial □ Comercial □ Industrial □ Parque
+- Sonidos identificados: ________________
+- Nivel de ruido (1-10): ________________
+- Fuentes principales: ________________
+- Distancia aproximada: ________________
+- Observaciones: ________________
+
+### UBICACIÓN 2: ________________
+[Mismo formato se repite]
+
+## 🎯 ANÁLISIS Y PROPUESTAS
+1. Problema principal identificado: ________________
+2. Causa raíz: ________________
+3. Propuesta de solución: ________________
+4. Recursos necesarios: ________________
+5. Impacto esperado: ________________
+
+## 📸 EVIDENCIAS
+□ Fotos adjuntas
+□ Grabaciones de audio
+□ Mediciones con app
+
+---
+Proyecto: Suba en Sintonía
+Institución: [Tu Colegio]
+`;
+
+            // Crear y descargar archivo
+            const blob = new Blob([diaryContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Diario_Detective_Sonoro.txt';
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+            alert('📥 ¡Diario descargado exitosamente!\n\nYa puedes comenzar tu investigación de campo. Recuerda llevar el diario impreso o en tu dispositivo móvil.');
+        }
+    </script>
+</body>
+</html>

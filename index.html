@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suba en Sintonía - Navegación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .main-title {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .phase-card {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .phase-card.inicio { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .phase-card.fase1 { background: linear-gradient(45deg, #ff6b6b, #ee5a24); }
+        .phase-card.fase2 { background: linear-gradient(45deg, #3498db, #2980b9); }
+        .phase-card.fase3 { background: linear-gradient(45deg, #e67e22, #d35400); }
+        .phase-card.fase4 { background: linear-gradient(45deg, #27ae60, #2ecc71); }
+
+        .phase-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .phase-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .phase-desc {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .instructions {
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.2em; }
+            .phases-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation-container">
+        <h1 class="main-title">🎵 Suba en Sintonía 🌿</h1>
+        <p class="subtitle">Un Desafío por el Silencio y la Naturaleza</p>
+        
+        <div class="phases-grid">
+            <a href="inicio.html" class="phase-card inicio">
+                <span class="phase-icon">🎬</span>
+                <div class="phase-title">Página de Inicio</div>
+                <div class="phase-desc">Video de introducción</div>
+            </a>
+            
+            <a href="fase1/index.html" class="phase-card fase1">
+                <span class="phase-icon">🔍</span>
+                <div class="phase-title">Fase 1</div>
+                <div class="phase-desc">Explora el Problema</div>
+            </a>
+            
+            <a href="fase2/index.html" class="phase-card fase2">
+                <span class="phase-icon">📚</span>
+                <div class="phase-title">Fase 2</div>
+                <div class="phase-desc">Investiga y Descubre</div>
+            </a>
+            
+            <a href="fase3/index.html" class="phase-card fase3">
+                <span class="phase-icon">💡</span>
+                <div class="phase-title">Fase 3</div>
+                <div class="phase-desc">Propón Soluciones</div>
+            </a>
+            
+            <a href="fase4/index.html" class="phase-card fase4">
+                <span class="phase-icon">🏆</span>
+                <div class="phase-title">Fase 4</div>
+                <div class="phase-desc">Actúa y Reflexiona</div>
+            </a>
+        </div>
+        
+        <div class="instructions">
+            <h4>📋 Instrucciones:</h4>
+            <p>Completa las fases en orden secuencial. Cada fase te preparará para la siguiente y al final obtendrás tu certificado como Detective Sonoro.</p>
+        </div>
+    </div>
+</body>
+</html>
