@@ -1,4 +1,3 @@
-<!-- fase1 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +13,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
             color: #333;
         }
@@ -27,7 +26,8 @@
 
         .header {
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
@@ -35,14 +35,14 @@
         }
 
         .header h1 {
-            color: #2c3e50;
+            color: white;
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .header p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.2em;
             font-weight: 300;
         }
@@ -646,8 +646,104 @@
             font-size: 14px;
             font-weight: bold;
             color: #2c3e50;
-            min-width: 40px;
+            min-width: 80px;
             text-align: right;
+        }
+
+        .chart-bar.user-choice {
+            background: rgba(46, 204, 113, 0.1);
+            border: 2px solid #2ecc71;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        .chart-bar.user-choice .bar-fill {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+        }
+
+        .chart-bar.user-choice .bar-label {
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        /* BOTONES DE NAVEGACIÓN */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px auto;
+            gap: 20px;
+            max-width: 1000px;
+            padding: 0 40px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn.home {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .nav-btn.home:hover {
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .nav-btn.next:hover {
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
+
+        .phase-indicator {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+                max-width: 280px;
+            }
+            
+            .phase-indicator {
+                order: -1;
+                margin-bottom: 10px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -820,7 +916,6 @@
                     <div class="capsule-content">
                         <div class="nature-effects">
                             <div class="nature-item">
-                                <div class="nature-icon">🐦</div>
                                 <div class="nature-text">
                                     <h4>Comunicación de Aves</h4>
                                     <p>El ruido urbano interfiere con los cantos de apareamiento y llamadas de alerta</p>
@@ -988,7 +1083,7 @@
                audioDescription: "Escucha: Cantos de aves, agua fluyendo, viento entre los árboles",
                healthImpact: "✅ Promueve la relajación y reduce el estrés",
                recommendation: "¡Disfruta estos espacios! Son refugios sonoros naturales.",
-               audioFile: "../assets/audio/nature.aac" // Ruta al archivo MP3
+               audioFile: "../assets/audio/nature.aac"
            },
            traffic: {
                title: "🚗 Vía Principal (Av. Suba)",
@@ -999,7 +1094,7 @@
                audioDescription: "Escucha: Motores, bocinas, frenadas, buses acelerando",
                healthImpact: "⚠️ Puede causar fatiga auditiva y estrés",
                recommendation: "Usa protección auditiva en exposiciones prolongadas.",
-               audioFile: "../assets/audio/VíaPrincipal.aac" // Ruta al archivo MP3
+               audioFile: "../assets/audio/VíaPrincipal.aac"
            },
            construction: {
                title: "🏗️ Zona de Construcción",
@@ -1010,7 +1105,7 @@
                audioDescription: "Escucha: Taladros, martillos neumáticos, maquinaria pesada",
                healthImpact: "❌ Puede dañar la audición y causar problemas de sueño",
                recommendation: "Evita la exposición prolongada. Exige cumplimiento de horarios.",
-               audioFile: "../assets/audio/construccion.aac" // Ruta al archivo MP3
+               audioFile: "../assets/audio/construccion.aac"
            },
            residential: {
                title: "🏠 Zona Residencial",
@@ -1021,7 +1116,7 @@
                audioDescription: "Escucha: Televisión, conversaciones, música, niños jugando",
                healthImpact: "⚡ Puede interferir con la concentración y el descanso",
                recommendation: "Busca momentos de silencio y espacios más tranquilos.",
-               audioFile: "../assets/audio/colegio.aac" // Ruta al archivo MP3
+               audioFile: "../assets/audio/colegio.aac"
            }
        };
 
@@ -1219,8 +1314,8 @@
            q3: null
        };
 
-       // Datos simulados para los resultados
-       const surveyData = {
+       // Datos base para los resultados (simulando respuestas previas)
+       let surveyData = {
            q1: {
                title: "Sonidos más molestos",
                data: {
@@ -1278,11 +1373,19 @@
            }
        };
 
+       // Copia de seguridad de los datos originales para resetear
+       const originalSurveyData = JSON.parse(JSON.stringify(surveyData));
+
        // Manejo de clics en opciones
        document.addEventListener('click', function(event) {
            if (event.target.classList.contains('option-btn')) {
                const question = event.target.dataset.question;
                const answer = event.target.dataset.answer;
+               
+               // Si ya había una respuesta anterior, restarla de los datos
+               if (surveyAnswers[question] !== null) {
+                   surveyData[question].data[surveyAnswers[question]] -= 1;
+               }
                
                // Remover selección anterior
                document.querySelectorAll(`[data-question="${question}"]`).forEach(btn => {
@@ -1293,12 +1396,21 @@
                event.target.classList.add('selected');
                surveyAnswers[question] = answer;
                
+               // Agregar nueva respuesta a los datos
+               surveyData[question].data[answer] += 1;
+               
                // Marcar pregunta como respondida
                const questionCard = event.target.closest('.question-card');
                questionCard.classList.add('answered');
                
                // Verificar si todas las preguntas están respondidas
                checkSurveyComplete();
+               
+               // Si ya se están mostrando los resultados, actualizar en tiempo real
+               const resultsSection = document.getElementById('surveyResults');
+               if (resultsSection.style.display === 'block') {
+                   updateCharts();
+               }
            }
        });
 
@@ -1310,17 +1422,14 @@
                showResultsBtn.disabled = false;
                showResultsBtn.style.background = 'linear-gradient(45deg, #2ecc71, #27ae60)';
                showResultsBtn.innerHTML = '📊 ¡Ver Resultados Ahora!';
+           } else {
+               showResultsBtn.disabled = true;
+               showResultsBtn.style.background = 'linear-gradient(45deg, #9b59b6, #8e44ad)';
+               showResultsBtn.innerHTML = '📊 Ver Resultados';
            }
        }
 
        function showResults() {
-           // Actualizar datos con la respuesta del usuario
-           Object.keys(surveyAnswers).forEach(question => {
-               if (surveyAnswers[question]) {
-                   surveyData[question].data[surveyAnswers[question]] += 1;
-               }
-           });
-           
            // Mostrar sección de resultados
            const resultsSection = document.getElementById('surveyResults');
            resultsSection.style.display = 'block';
@@ -1331,8 +1440,14 @@
            // Scroll suave a resultados
            resultsSection.scrollIntoView({ behavior: 'smooth' });
            
-           // Ocultar botón de resultados
-           document.getElementById('showResultsBtn').style.display = 'none';
+           // Cambiar texto del botón
+           const showResultsBtn = document.getElementById('showResultsBtn');
+           showResultsBtn.innerHTML = '🔄 Actualizar Resultados';
+           showResultsBtn.style.background = 'linear-gradient(45deg, #3498db, #2980b9)';
+       }
+
+       function updateCharts() {
+           generateCharts();
        }
 
        function generateCharts() {
@@ -1344,17 +1459,29 @@
                
                let chartHTML = `<div class="chart-title">${questionData.title}</div>`;
                
-               Object.keys(questionData.data).forEach(option => {
+               // Ordenar opciones por cantidad de votos (mayor a menor)
+               const sortedOptions = Object.keys(questionData.data).sort((a, b) => 
+                   questionData.data[b] - questionData.data[a]
+               );
+               
+               sortedOptions.forEach(option => {
                    const value = questionData.data[option];
-                   const percentage = Math.round((value / total) * 100);
+                   const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                   
+                   // Destacar si es la respuesta del usuario
+                   const isUserChoice = surveyAnswers[questionKey] === option;
+                   const barClass = isUserChoice ? 'user-choice' : '';
                    
                    chartHTML += `
-                       <div class="chart-bar">
-                           <div class="bar-label">${questionData.labels[option]}</div>
+                       <div class="chart-bar ${barClass}">
+                           <div class="bar-label">
+                               ${questionData.labels[option]}
+                               ${isUserChoice ? ' 👤' : ''}
+                           </div>
                            <div class="bar-visual">
                                <div class="bar-fill" style="width: ${percentage}%"></div>
                            </div>
-                           <div class="bar-percentage">${percentage}%</div>
+                           <div class="bar-percentage">${percentage}% (${value})</div>
                        </div>
                    `;
                });
@@ -1364,15 +1491,20 @@
                // Animar las barras
                setTimeout(() => {
                    chartContainer.querySelectorAll('.bar-fill').forEach((bar, barIndex) => {
+                       const targetWidth = bar.style.width;
+                       bar.style.width = '0%';
                        setTimeout(() => {
-                           bar.style.width = bar.style.width;
+                           bar.style.width = targetWidth;
                        }, barIndex * 100);
                    });
-               }, 300);
+               }, 100);
            });
        }
 
        function resetSurvey() {
+           // Restaurar datos originales
+           surveyData = JSON.parse(JSON.stringify(originalSurveyData));
+           
            // Limpiar respuestas
            surveyAnswers = { q1: null, q2: null, q3: null };
            
@@ -1389,17 +1521,12 @@
            // Ocultar resultados
            document.getElementById('surveyResults').style.display = 'none';
            
-           // Mostrar botón de resultados
+           // Restaurar botón de resultados
            const showResultsBtn = document.getElementById('showResultsBtn');
            showResultsBtn.style.display = 'block';
            showResultsBtn.disabled = true;
            showResultsBtn.style.background = 'linear-gradient(45deg, #9b59b6, #8e44ad)';
            showResultsBtn.innerHTML = '📊 Ver Resultados';
-           
-           // Restaurar datos originales
-           surveyData.q1.data = { trafico: 45, construccion: 25, musica: 15, motocicletas: 8, vendedores: 4, animales: 3 };
-           surveyData.q2.data = { muy_grave: 35, grave: 30, moderado: 20, leve: 10, no_problema: 5 };
-           surveyData.q3.data = { aves: 40, agua: 25, viento: 15, insectos: 8, lluvia: 7, silencio: 5 };
            
            // Scroll a encuesta
            document.querySelector('.survey-section').scrollIntoView({ behavior: 'smooth' });
@@ -1417,5 +1544,20 @@
            });
        });
    </script>
+
+   <!-- BOTONES DE NAVEGACIÓN -->
+   <div class="navigation-buttons">
+       <a href="../index.html" class="nav-btn home">
+           🏠 Inicio
+       </a>
+       <div class="phase-indicator">
+           <small>Fase 1 de 5</small>
+       </div>
+       <a href="../fase2/index.html" class="nav-btn next">
+           Fase 2 📚
+       </a>
+   </div>
+
 </body>
-</html>
+</html>-icon">🐦</div>
+                                <div class="nature

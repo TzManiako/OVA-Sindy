@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
             color: #333;
         }
@@ -26,7 +26,8 @@
 
         .header {
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
@@ -34,16 +35,120 @@
         }
 
         .header h1 {
-            color: #2c3e50;
+            color: white;
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .header p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.2em;
             font-weight: 300;
+        }
+
+        /* BOTONES DE NAVEGACIÓN */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px auto;
+            gap: 20px;
+            max-width: 1000px;
+            padding: 0 40px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn.home {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .nav-btn.home:hover {
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        .nav-btn.prev {
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .nav-btn.prev:hover {
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .nav-btn.next:hover {
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 15px;
+        }
+
+        .phase-indicator {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+            
+            .nav-left {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                width: 120px;
+                justify-content: center;
+            }
+            
+            .nav-btn.next {
+                order: 2;
+                width: 280px;
+            }
+            
+            .phase-indicator {
+                order: 0;
+                margin-bottom: 10px;
+            }
         }
 
         .phase-title {
@@ -1086,5 +1191,24 @@ Institución: [Tu Colegio]
             });
         });
     </script>
+
+    <!-- BOTONES DE NAVEGACIÓN -->
+    <div class="navigation-buttons">
+        <div class="nav-left">
+            <a href="../index.html" class="nav-btn home">
+                🏠 Inicio
+            </a>
+            <a href="../fase1/index.html" class="nav-btn prev">
+                ⬅️ Fase 1
+            </a>
+        </div>
+        <div class="phase-indicator">
+            <small>Fase 2 de 5</small>
+        </div>
+        <a href="../fase3/index.html" class="nav-btn next">
+            Fase 3 💡
+        </a>
+    </div>
+
 </body>
 </html>

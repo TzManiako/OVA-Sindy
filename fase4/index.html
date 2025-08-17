@@ -1,4 +1,3 @@
-<!-- fase4 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +13,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
             color: #333;
         }
@@ -27,7 +26,8 @@
 
         .header {
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
@@ -35,16 +35,120 @@
         }
 
         .header h1 {
-            color: #2c3e50;
+            color: white;
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .header p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.2em;
             font-weight: 300;
+        }
+
+        /* BOTONES DE NAVEGACIÓN */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px auto;
+            gap: 20px;
+            max-width: 1000px;
+            padding: 0 40px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn.home {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .nav-btn.home:hover {
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        .nav-btn.prev {
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .nav-btn.prev:hover {
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .nav-btn.next:hover {
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 15px;
+        }
+
+        .phase-indicator {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+            
+            .nav-left {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                width: 120px;
+                justify-content: center;
+            }
+            
+            .nav-btn.next {
+                order: 2;
+                width: 280px;
+            }
+            
+            .phase-indicator {
+                order: 0;
+                margin-bottom: 10px;
+            }
         }
 
         .phase-title {
@@ -550,63 +654,6 @@
             box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
         }
 
-        /* CERTIFICADO DE FINALIZACIÓN */
-        .certificate-preview {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            color: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            margin-top: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .certificate-preview::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(255, 255, 255, 0.1) 20px,
-                rgba(255, 255, 255, 0.1) 40px
-            );
-            animation: certificateShine 4s linear infinite;
-        }
-
-        @keyframes certificateShine {
-            0% { transform: translateX(-50px) translateY(-50px); }
-            100% { transform: translateX(50px) translateY(50px); }
-        }
-
-        .certificate-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .download-certificate-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-        }
-
-        .download-certificate-btn:hover {
-            background: white;
-            color: #f39c12;
-        }
-
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .header h1 {
@@ -768,7 +815,7 @@
                             <div class="stat-label">Evidencias Subidas</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">4/4</div>
+                            <div class="stat-number">4/5</div>
                             <div class="stat-label">Fases Completadas</div>
                         </div>
                     </div>
@@ -795,29 +842,19 @@
                         <textarea id="reflection4" placeholder="Define acciones concretas que puedes realizar en tu vida diaria para reducir la contaminación sonora..."></textarea>
                     </div>
 
+                    <div style="background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 15px; margin: 30px 0;">
+                        <h4 style="color: #2ecc71; margin-bottom: 15px;">🎯 ¡Ya casi terminas!</h4>
+                        <p style="color: #7f8c8d; line-height: 1.5;">
+                            Has completado 4 de las 5 fases del proyecto "Suba en Sintonía". 
+                            Una vez completes esta reflexión, dirígete a la <strong>Fase 5</strong> para realizar 
+                            el cuestionario final y obtener tu certificado como Detective Sonoro.
+                        </p>
+                    </div>
+
                     <button class="submit-reflection-btn" onclick="submitReflection()">
-                        🎓 Completar Reflexión y Obtener Certificado
+                        🎓 Completar Reflexión
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <!-- CERTIFICADO DE FINALIZACIÓN -->
-        <div class="certificate-preview" id="certificateSection" style="display: none;">
-            <div class="certificate-content">
-                <h2>🏅 ¡Certificado de Finalización! 🏅</h2>
-                <h3>Detective Sonoro Certificado</h3>
-                <p style="margin: 20px 0; font-size: 18px;">
-                    Has completado exitosamente el proyecto<br>
-                    <strong>"Suba en Sintonía: Un Desafío por el Silencio y la Naturaleza"</strong>
-                </p>
-                <p>
-                    Reconocemos tu dedicación en la investigación, propuesta e implementación<br>
-                    de soluciones para reducir la contaminación sonora en Suba.
-                </p>
-                <button class="download-certificate-btn" onclick="downloadCertificate()">
-                    📜 Descargar Certificado
-                </button>
             </div>
         </div>
     </div>
@@ -874,219 +911,219 @@
             ];
 
             tasks = sampleTasks;
-           projects = sampleProjects;
-           taskIdCounter = 3;
-           projectIdCounter = 3;
+            projects = sampleProjects;
+            taskIdCounter = 3;
+            projectIdCounter = 3;
 
-           renderTasks();
-           renderProjects();
-       }
+            renderTasks();
+            renderProjects();
+        }
 
-       // FUNCIONES DEL PLAN DE ACCIÓN
-       function toggleTaskForm() {
-           const form = document.getElementById('taskForm');
-           form.classList.toggle('active');
-           
-           if (form.classList.contains('active')) {
-               document.getElementById('taskName').focus();
-           }
-       }
+        // FUNCIONES DEL PLAN DE ACCIÓN
+        function toggleTaskForm() {
+            const form = document.getElementById('taskForm');
+            form.classList.toggle('active');
+            
+            if (form.classList.contains('active')) {
+                document.getElementById('taskName').focus();
+            }
+        }
 
-       function saveTask() {
-           const name = document.getElementById('taskName').value.trim();
-           const responsible = document.getElementById('taskResponsible').value.trim();
-           const date = document.getElementById('taskDate').value;
+        function saveTask() {
+            const name = document.getElementById('taskName').value.trim();
+            const responsible = document.getElementById('taskResponsible').value.trim();
+            const date = document.getElementById('taskDate').value;
 
-           if (!name || !responsible || !date) {
-               alert('Por favor completa todos los campos de la tarea.');
-               return;
-           }
+            if (!name || !responsible || !date) {
+                alert('Por favor completa todos los campos de la tarea.');
+                return;
+            }
 
-           const newTask = {
-               id: taskIdCounter++,
-               name: name,
-               responsible: responsible,
-               date: date,
-               completed: false
-           };
+            const newTask = {
+                id: taskIdCounter++,
+                name: name,
+                responsible: responsible,
+                date: date,
+                completed: false
+            };
 
-           tasks.push(newTask);
-           
-           // Limpiar formulario
-           document.getElementById('taskName').value = '';
-           document.getElementById('taskResponsible').value = '';
-           document.getElementById('taskDate').value = '';
-           
-           // Ocultar formulario
-           document.getElementById('taskForm').classList.remove('active');
-           
-           renderTasks();
-           updateStats();
-       }
+            tasks.push(newTask);
+            
+            // Limpiar formulario
+            document.getElementById('taskName').value = '';
+            document.getElementById('taskResponsible').value = '';
+            document.getElementById('taskDate').value = '';
+            
+            // Ocultar formulario
+            document.getElementById('taskForm').classList.remove('active');
+            
+            renderTasks();
+            updateStats();
+        }
 
-       function renderTasks() {
-           const timeline = document.getElementById('tasksTimeline');
-           const timelineContent = tasks.map(task => `
-               <div class="task-item ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
-                   <div class="task-content">
-                       <div class="task-info">
-                           <h4>${task.name}</h4>
-                           <div class="task-details">
-                               <span>👤 ${task.responsible}</span>
-                               <span>📅 ${formatDate(task.date)}</span>
-                           </div>
-                       </div>
-                       <div class="task-actions">
-                           <button class="task-btn complete" onclick="toggleTaskComplete(${task.id})">
-                               ${task.completed ? '↩️ Reabrir' : '✅ Completar'}
-                           </button>
-                           <button class="task-btn delete" onclick="deleteTask(${task.id})">🗑️ Eliminar</button>
-                       </div>
-                   </div>
-               </div>
-           `).join('');
-           
-           timeline.innerHTML = '<div class="timeline-line"></div>' + timelineContent;
-       }
+        function renderTasks() {
+            const timeline = document.getElementById('tasksTimeline');
+            const timelineContent = tasks.map(task => `
+                <div class="task-item ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
+                    <div class="task-content">
+                        <div class="task-info">
+                            <h4>${task.name}</h4>
+                            <div class="task-details">
+                                <span>👤 ${task.responsible}</span>
+                                <span>📅 ${formatDate(task.date)}</span>
+                            </div>
+                        </div>
+                        <div class="task-actions">
+                            <button class="task-btn complete" onclick="toggleTaskComplete(${task.id})">
+                                ${task.completed ? '↩️ Reabrir' : '✅ Completar'}
+                            </button>
+                            <button class="task-btn delete" onclick="deleteTask(${task.id})">🗑️ Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            timeline.innerHTML = '<div class="timeline-line"></div>' + timelineContent;
+        }
 
-       function toggleTaskComplete(taskId) {
-           const task = tasks.find(t => t.id === taskId);
-           if (task) {
-               task.completed = !task.completed;
-               renderTasks();
-               updateStats();
-               
-               if (task.completed) {
-                   showNotification('✅ Tarea completada: ' + task.name, 'success');
-               }
-           }
-       }
+        function toggleTaskComplete(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {
+                task.completed = !task.completed;
+                renderTasks();
+                updateStats();
+                
+                if (task.completed) {
+                    showNotification('✅ Tarea completada: ' + task.name, 'success');
+                }
+            }
+        }
 
-       function deleteTask(taskId) {
-           if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
-               tasks = tasks.filter(t => t.id !== taskId);
-               renderTasks();
-               updateStats();
-               showNotification('🗑️ Tarea eliminada', 'info');
-           }
-       }
+        function deleteTask(taskId) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+                tasks = tasks.filter(t => t.id !== taskId);
+                renderTasks();
+                updateStats();
+                showNotification('🗑️ Tarea eliminada', 'info');
+            }
+        }
 
-       function formatDate(dateString) {
-           const date = new Date(dateString);
-           return date.toLocaleDateString('es-ES', { 
-               day: 'numeric', 
-               month: 'long' 
-           });
-       }
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', { 
+                day: 'numeric', 
+                month: 'long' 
+            });
+        }
 
-       // FUNCIONES DE LA GALERÍA
-       function toggleUploadForm() {
-           const form = document.getElementById('uploadForm');
-           form.classList.toggle('active');
-       }
+        // FUNCIONES DE LA GALERÍA
+        function toggleUploadForm() {
+            const form = document.getElementById('uploadForm');
+            form.classList.toggle('active');
+        }
 
-       function uploadProject() {
-           const title = document.getElementById('projectTitle').value.trim();
-           const description = document.getElementById('projectDescription').value.trim();
-           const type = document.getElementById('projectType').value;
+        function uploadProject() {
+            const title = document.getElementById('projectTitle').value.trim();
+            const description = document.getElementById('projectDescription').value.trim();
+            const type = document.getElementById('projectType').value;
 
-           if (!title || !description) {
-               alert('Por favor completa el título y la descripción del proyecto.');
-               return;
-           }
+            if (!title || !description) {
+                alert('Por favor completa el título y la descripción del proyecto.');
+                return;
+            }
 
-           const newProject = {
-               id: projectIdCounter++,
-               title: title,
-               description: description,
-               type: type,
-               date: new Date().toLocaleDateString()
-           };
+            const newProject = {
+                id: projectIdCounter++,
+                title: title,
+                description: description,
+                type: type,
+                date: new Date().toLocaleDateString()
+            };
 
-           projects.push(newProject);
-           
-           // Limpiar formulario
-           document.getElementById('projectTitle').value = '';
-           document.getElementById('projectDescription').value = '';
-           
-           // Ocultar formulario
-           document.getElementById('uploadForm').classList.remove('active');
-           
-           renderProjects();
-           updateStats();
-           showNotification('📸 Proyecto subido exitosamente', 'success');
-       }
+            projects.push(newProject);
+            
+            // Limpiar formulario
+            document.getElementById('projectTitle').value = '';
+            document.getElementById('projectDescription').value = '';
+            
+            // Ocultar formulario
+            document.getElementById('uploadForm').classList.remove('active');
+            
+            renderProjects();
+            updateStats();
+            showNotification('📸 Proyecto subido exitosamente', 'success');
+        }
 
-       function renderProjects() {
-           const grid = document.getElementById('projectsGrid');
-           
-           if (projects.length === 0) {
-               grid.innerHTML = `
-                   <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #7f8c8d;">
-                       <div style="font-size: 60px; margin-bottom: 20px;">📁</div>
-                       <p>No hay proyectos aún. ¡Sube tu primera evidencia!</p>
-                   </div>
-               `;
-               return;
-           }
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            
+            if (projects.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #7f8c8d;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">📁</div>
+                        <p>No hay proyectos aún. ¡Sube tu primera evidencia!</p>
+                    </div>
+                `;
+                return;
+            }
 
-           const projectsContent = projects.map(project => `
-               <div class="project-card">
-                   <div class="project-image">
-                       ${getProjectIcon(project.type)}
-                   </div>
-                   <div class="project-content">
-                       <div class="project-title">${project.title}</div>
-                       <div class="project-description">${project.description}</div>
-                       <div class="project-meta">
-                           <span class="project-type">${getProjectTypeName(project.type)}</span>
-                           <span>${project.date}</span>
-                       </div>
-                   </div>
-               </div>
-           `).join('');
-           
-           grid.innerHTML = projectsContent;
-       }
+            const projectsContent = projects.map(project => `
+                <div class="project-card">
+                    <div class="project-image">
+                        ${getProjectIcon(project.type)}
+                    </div>
+                    <div class="project-content">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div class="project-meta">
+                            <span class="project-type">${getProjectTypeName(project.type)}</span>
+                            <span>${project.date}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            grid.innerHTML = projectsContent;
+        }
 
-       function getProjectIcon(type) {
-           const icons = {
-               foto: '📷',
-               video: '🎥',
-               documento: '📄',
-               informe: '📊'
-           };
-           return icons[type] || '📁';
-       }
+        function getProjectIcon(type) {
+            const icons = {
+                foto: '📷',
+                video: '🎥',
+                documento: '📄',
+                informe: '📊'
+            };
+            return icons[type] || '📁';
+        }
 
-       function getProjectTypeName(type) {
-           const names = {
-               foto: 'Fotografía',
-               video: 'Video',
-               documento: 'Documento',
-               informe: 'Informe'
-           };
-           return names[type] || type;
-       }
+        function getProjectTypeName(type) {
+            const names = {
+                foto: 'Fotografía',
+                video: 'Video',
+                documento: 'Documento',
+                informe: 'Informe'
+            };
+            return names[type] || type;
+        }
 
-       // FUNCIONES DE REFLEXIÓN
-       function submitReflection() {
-           const reflections = [
-               document.getElementById('reflection1').value.trim(),
-               document.getElementById('reflection2').value.trim(),
-               document.getElementById('reflection3').value.trim(),
-               document.getElementById('reflection4').value.trim()
-           ];
+        // FUNCIONES DE REFLEXIÓN
+        function submitReflection() {
+            const reflections = [
+                document.getElementById('reflection1').value.trim(),
+                document.getElementById('reflection2').value.trim(),
+                document.getElementById('reflection3').value.trim(),
+                document.getElementById('reflection4').value.trim()
+            ];
 
-           const incompleteCount = reflections.filter(r => r === '').length;
-           
-           if (incompleteCount > 2) {
-               alert('Por favor completa al menos 2 reflexiones para continuar.');
-               return;
-           }
+            const incompleteCount = reflections.filter(r => r === '').length;
+            
+            if (incompleteCount > 2) {
+                alert('Por favor completa al menos 2 reflexiones para continuar.');
+                return;
+            }
 
-           // Generar reporte de reflexión
-           const reflectionReport = `
+            // Generar reporte de reflexión
+            const reflectionReport = `
 # 🎓 REFLEXIÓN FINAL - SUBA EN SINTONÍA
 
 ## 📋 INFORMACIÓN DEL PARTICIPANTE
@@ -1112,138 +1149,119 @@ ${reflections[3] || 'No respondido'}
 - Tareas planificadas: ${tasks.length}
 - Tareas completadas: ${tasks.filter(t => t.completed).length}
 - Evidencias documentadas: ${projects.length}
-- Fases completadas: 4/4
+- Fases completadas: 4/5
 
 ## 🎯 LOGROS DESBLOQUEADOS
 ✅ Detective Sonoro Novato - Completaste la Fase 1
 ✅ Investigador Experto - Completaste la Fase 2  
 ✅ Solucionador Creativo - Completaste la Fase 3
-✅ Agente de Cambio - Completaste la Fase 4
-🏆 MAESTRO DEL SILENCIO - ¡Completaste todo el proyecto!
+✅ Planificador Estratégico - Completaste la Fase 4
+
+¡Ya estás listo para la evaluación final en la Fase 5!
 
 ---
-¡Felicitaciones por convertirte en un verdadero guardián del silencio en Suba!
-           `;
+Próximo paso: Dirígete a la Fase 5 para completar el cuestionario final
+y obtener tu certificado como MAESTRO DEL SILENCIO.
+            `;
 
-           // Descargar reflexión
-           downloadFile(reflectionReport, 'Mi_Reflexion_Suba_en_Sintonia.txt');
-           
-           // Mostrar certificado
-           document.getElementById('certificateSection').style.display = 'block';
-           document.getElementById('certificateSection').scrollIntoView({ behavior: 'smooth' });
-           
-           showNotification('🎉 ¡Reflexión completada! Certificado disponible', 'success');
-       }
+            // Descargar reflexión
+            downloadFile(reflectionReport, 'Mi_Reflexion_Suba_en_Sintonia.txt');
+            
+            showNotification('🎉 ¡Reflexión completada! Continúa a la Fase 5 para obtener tu certificado', 'success');
+        }
 
-       // ACTUALIZAR ESTADÍSTICAS
-       function updateStats() {
-           document.getElementById('tasksCount').textContent = tasks.length;
-           document.getElementById('projectsCount').textContent = projects.length;
-           
-           // Simular ideas (en una implementación real, esto vendría de la Fase 3)
-           document.getElementById('ideasCount').textContent = Math.floor(Math.random() * 5) + 3;
-       }
+        // ACTUALIZAR ESTADÍSTICAS
+        function updateStats() {
+            document.getElementById('tasksCount').textContent = tasks.length;
+            document.getElementById('projectsCount').textContent = projects.length;
+            
+            // Simular ideas (en una implementación real, esto vendría de la Fase 3)
+            document.getElementById('ideasCount').textContent = Math.floor(Math.random() * 5) + 3;
+        }
 
-       // DESCARGAR CERTIFICADO
-       function downloadCertificate() {
-           const certificate = `
-🏅 CERTIFICADO DE FINALIZACIÓN 🏅
+        // FUNCIÓN AUXILIAR PARA DESCARGAR ARCHIVOS
+        function downloadFile(content, filename) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
 
-DETECTIVE SONORO CERTIFICADO
+        // SISTEMA DE NOTIFICACIONES
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            
+            const colors = {
+                success: 'linear-gradient(45deg, #2ecc71, #27ae60)',
+                info: 'linear-gradient(45deg, #3498db, #2980b9)',
+                warning: 'linear-gradient(45deg, #f39c12, #e67e22)',
+                error: 'linear-gradient(45deg, #e74c3c, #c0392b)'
+            };
 
-Este certificado se otorga a:
-[TU NOMBRE]
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                animation: slideInRight 0.5s ease-out;
+                max-width: 350px;
+                font-size: 14px;
+                line-height: 1.4;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease-in forwards';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 500);
+            }, 4000);
+        }
 
-Por haber completado exitosamente el proyecto educativo:
-"SUBA EN SINTONÍA: UN DESAFÍO POR EL SILENCIO Y LA NATURALEZA"
+        // AGREGAR ESTILOS DE ANIMACIÓN
+        const animationStyle = document.createElement('style');
+        animationStyle.textContent = `
+            @keyframes slideInRight {
+                0% { transform: translateX(100%); opacity: 0; }
+                100% { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                0% { transform: translateX(0); opacity: 1; }
+                100% { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(animationStyle);
+    </script>
 
-Reconocemos tu dedicación y compromiso en:
-✅ Investigar la problemática de contaminación sonora
-✅ Proponer soluciones creativas e innovadoras  
-✅ Planificar estrategias de implementación
-✅ Documentar evidencias del trabajo realizado
-✅ Reflexionar sobre el impacto personal y comunitario
+    <!-- BOTONES DE NAVEGACIÓN -->
+    <div class="navigation-buttons">
+        <div class="nav-left">
+            <a href="../index.html" class="nav-btn home">
+                🏠 Inicio
+            </a>
+            <a href="../fase3/index.html" class="nav-btn prev">
+                ⬅️ Fase 3
+            </a>
+        </div>
+        <div class="phase-indicator">
+            <small>Fase 4 de 5</small>
+        </div>
+        <a href="../fase5/index.html" class="nav-btn next">
+            Fase 5 🧠
+        </a>
+    </div>
 
-Has demostrado ser un verdadero AGENTE DE CAMBIO
-en la protección del ambiente sonoro de Suba.
-
-Fecha: ${new Date().toLocaleDateString()}
-Proyecto: Suba en Sintonía
-Institución: [Tu Colegio]
-
-¡Continúa siendo un guardián del silencio en tu comunidad!
-
-🌿🎵🏆🎵🌿
-           `;
-
-           downloadFile(certificate, 'Certificado_Detective_Sonoro.txt');
-           showNotification('📜 Certificado descargado exitosamente', 'success');
-       }
-
-       // FUNCIÓN AUXILIAR PARA DESCARGAR ARCHIVOS
-       function downloadFile(content, filename) {
-           const blob = new Blob([content], { type: 'text/plain' });
-           const url = window.URL.createObjectURL(blob);
-           const a = document.createElement('a');
-           a.href = url;
-           a.download = filename;
-           a.click();
-           window.URL.revokeObjectURL(url);
-       }
-
-       // SISTEMA DE NOTIFICACIONES
-       function showNotification(message, type = 'info') {
-           const notification = document.createElement('div');
-           
-           const colors = {
-               success: 'linear-gradient(45deg, #2ecc71, #27ae60)',
-               info: 'linear-gradient(45deg, #3498db, #2980b9)',
-               warning: 'linear-gradient(45deg, #f39c12, #e67e22)',
-               error: 'linear-gradient(45deg, #e74c3c, #c0392b)'
-           };
-
-           notification.style.cssText = `
-               position: fixed;
-               top: 20px;
-               right: 20px;
-               background: ${colors[type]};
-               color: white;
-               padding: 15px 20px;
-               border-radius: 10px;
-               box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-               z-index: 1000;
-               animation: slideInRight 0.5s ease-out;
-               max-width: 350px;
-               font-size: 14px;
-               line-height: 1.4;
-           `;
-           
-           notification.textContent = message;
-           document.body.appendChild(notification);
-           
-           setTimeout(() => {
-               notification.style.animation = 'slideOutRight 0.5s ease-in forwards';
-               setTimeout(() => {
-                   if (document.body.contains(notification)) {
-                       document.body.removeChild(notification);
-                   }
-               }, 500);
-           }, 4000);
-       }
-
-       // AGREGAR ESTILOS DE ANIMACIÓN
-       const animationStyle = document.createElement('style');
-       animationStyle.textContent = `
-           @keyframes slideInRight {
-               0% { transform: translateX(100%); opacity: 0; }
-               100% { transform: translateX(0); opacity: 1; }
-           }
-           @keyframes slideOutRight {
-               0% { transform: translateX(0); opacity: 1; }
-               100% { transform: translateX(100%); opacity: 0; }
-           }
-       `;
-       document.head.appendChild(animationStyle);
-   </script>
 </body>
 </html>

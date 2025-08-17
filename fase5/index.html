@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
             color: #333;
         }
@@ -26,7 +26,8 @@
 
         .header {
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
@@ -34,8 +35,75 @@
         }
 
         .header h1 {
-            color: #2c3e50;
+            color: white;
             font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* BOTONES DE NAVEGACIÓN */
+        .navigation-buttons-quiz {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .nav-btn-quiz {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn-quiz.home {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .nav-btn-quiz.home:hover {
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        .nav-btn-quiz.prev {
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .nav-btn-quiz.prev:hover {
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .nav-btn-quiz.final {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+        }
+
+        .nav-btn-quiz.final:hover {
+            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+            size: 2.5em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
@@ -971,5 +1039,24 @@ Proyecto: Suba en Sintonía
             });
         });
     </script>
+
+    <!-- BOTONES DE NAVEGACIÓN -->
+    <div class="navigation-buttons-quiz">
+        <div style="display: flex; gap: 15px;">
+            <a href="../index.html" class="nav-btn-quiz home">
+                🏠 Inicio
+            </a>
+            <a href="../fase4/index.html" class="nav-btn-quiz prev">
+                ⬅️ Fase 4
+            </a>
+        </div>
+        <div style="text-align: center; color: #7f8c8d;">
+            <small>Fase 5 de 5 - ¡Evaluación Final!</small>
+        </div>
+        <div class="nav-btn-quiz final" style="opacity: 0.6; cursor: not-allowed;">
+            🎓 ¡Proyecto Completo!
+        </div>
+    </div>
+
 </body>
 </html>
