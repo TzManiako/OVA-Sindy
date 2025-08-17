@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fase 2: Investiga y Descubre - Suba en Sintonía</title>
+    <title>Fase 2: Estrategias - Suba en Sintonía</title>
     <style>
         * {
             margin: 0;
@@ -54,6 +54,100 @@
             text-align: center;
             margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .noise-concept {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #e74c3c;
+        }
+
+        .concept-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .concept-icon {
+            font-size: 50px;
+            margin-right: 20px;
+            animation: pulseIcon 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .concept-text {
+            background: rgba(231, 76, 60, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        .health-effects {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .effects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .effect-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #e74c3c;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .effect-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .effect-icon {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .effect-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .effect-description {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .effect-card.expanded .effect-description {
+            max-height: 200px;
+            margin-top: 10px;
         }
 
         .detective-intro {
@@ -119,7 +213,63 @@
             font-size: 24px;
         }
 
-        /* BIBLIOTECA VIRTUAL */
+        /* ESTRATEGIAS PARA CONSTRUCCIONES */
+        .strategy-category {
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+        }
+
+        .strategy-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .strategy-category h4::before {
+            content: "🔧";
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .strategy-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .strategy-item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 3px solid #3498db;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .strategy-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .strategy-item strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .strategy-item p {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* BIBLIOTECA VIRTUAL - Mantener estilos originales */
         .library-tabs {
             display: flex;
             margin-bottom: 25px;
@@ -294,104 +444,7 @@
             margin-left: auto;
         }
 
-        /* ENTREVISTAS DIGITALES */
-        .interview-selector {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .character-card {
-            background: rgba(52, 152, 219, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-        }
-
-        .character-card:hover, .character-card.selected {
-            background: rgba(52, 152, 219, 0.2);
-            border-color: #3498db;
-            transform: translateY(-5px);
-        }
-
-        .character-avatar {
-            font-size: 60px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .character-card h4 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .character-card p {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-
-        .questions-panel {
-            background: rgba(241, 196, 15, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .questions-panel.active {
-            display: block;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .question-btn {
-            background: white;
-            border: 2px solid #f1c40f;
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin: 10px 0;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .question-btn:hover {
-            background: #f1c40f;
-            color: white;
-        }
-
-        .answer-video {
-            background: #2c3e50;
-            color: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            display: none;
-        }
-
-        .answer-video.show {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* DIARIO DE CAMPO */
+        /* DIARIO DE CAMPO - Mantener estilos originales */
         .field-diary {
             text-align: center;
         }
@@ -495,12 +548,22 @@
                 grid-template-columns: 1fr;
             }
 
-            .interview-selector {
+            .effects-grid {
                 grid-template-columns: 1fr;
             }
 
             .library-tabs {
                 flex-direction: column;
+            }
+
+            .concept-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .concept-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -513,17 +576,214 @@
         </div>
 
         <div class="phase-title">
-            <h2>Fase 2: ¡Manos a la obra, detectives sonoros!</h2>
-            <p>Recopila información para encontrar posibles soluciones</p>
+            <h2>Fase 2: Estrategias y Comprensión Profunda</h2>
+            <p>Investiga, descubre y comprende la problemática del ruido en Suba</p>
+        </div>
+
+        <!-- CONCEPTO DE RUIDO ACTUALIZADO -->
+        <div class="noise-concept">
+            <div class="concept-header">
+                <div class="concept-icon">🔊</div>
+                <div>
+                    <h3>¿Qué es realmente el ruido?</h3>
+                    <p>Entendiendo el problema desde su definición técnica</p>
+                </div>
+            </div>
+            <div class="concept-text">
+                <strong>Definición Técnica:</strong> El ruido no es solo una molestia. Según el Profesor Raes, citado en el artículo de Alonso (2003), <em>el ruido se puede definir como un sonido no deseado o un sonido molesto e intempestivo que puede producir efectos fisiológicos y psicológicos no deseados en una persona o en un grupo. En su aspecto físico, el ruido es un sonido, y son las circunstancias subjetivas de los receptores las que determinan la calificación de ruido.</em>
+            </div>
+        </div>
+
+        <!-- EFECTOS EN LA SALUD AMPLIADOS -->
+        <div class="health-effects">
+            <div class="section-header">
+                <div class="section-icon">⚕️</div>
+                <div>
+                    <h3>Efectos del Ruido en la Salud</h3>
+                    <p>Haz clic en cada efecto para conocer más detalles</p>
+                </div>
+            </div>
+            
+            <div class="effects-grid">
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">😰</div>
+                    <div class="effect-title">Estrés y Ansiedad</div>
+                    <div class="effect-description">
+                        El ruido eleva los niveles de cortisol, la hormona del estrés, manteniéndote en un estado de alerta constante que puede llevar a trastornos de ansiedad y problemas de adaptación social.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">🧠</div>
+                    <div class="effect-title">Baja Concentración</div>
+                    <div class="effect-description">
+                        Dificulta el enfoque en tareas, el estudio y el trabajo, reduciendo tu productividad y capacidad de aprendizaje. Los estudiantes en ambientes ruidosos pueden perder hasta un 25% de su capacidad de comprensión.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">🤕</div>
+                    <div class="effect-title">Dolores de Cabeza</div>
+                    <div class="effect-description">
+                        La tensión causada por el ruido puede provocar migrañas y dolores de cabeza frecuentes debido a la contracción muscular y el estrés neurológico constante.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">😴</div>
+                    <div class="effect-title">Insomnio</div>
+                    <div class="effect-description">
+                        El ruido nocturno interrumpe los ciclos de sueño, haciendo que te sea difícil conciliar el sueño y descansar adecuadamente. Incluso ruidos de 40 dB pueden fragmentar el sueño.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">😴</div>
+                    <div class="effect-title">Fatiga Crónica</div>
+                    <div class="effect-description">
+                        La falta de sueño de calidad lleva a una sensación de cansancio permanente, afectando tu energía y ánimo durante el día, reduciendo el rendimiento físico y mental.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">💓</div>
+                    <div class="effect-title">Presión Arterial Alta</div>
+                    <div class="effect-description">
+                        La exposición prolongada a ruidos fuertes puede aumentar la presión arterial y el ritmo cardíaco como respuesta del sistema nervioso simpático al estrés acústico.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">❤️</div>
+                    <div class="effect-title">Riesgo Cardiovascular</div>
+                    <div class="effect-description">
+                        El estrés crónico y la hipertensión pueden incrementar el riesgo de problemas cardíacos a largo plazo, incluyendo arritmias e infartos.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">👂</div>
+                    <div class="effect-title">Pérdida Auditiva</div>
+                    <div class="effect-description">
+                        La exposición a ruidos superiores a 85 dB (como los de una vía principal) puede dañar irreversiblemente las células ciliadas del oído interno, causando hipoacusia permanente.
+                    </div>
+                </div>
+
+                <div class="effect-card" onclick="toggleEffect(this)">
+                    <div class="effect-icon">🔔</div>
+                    <div class="effect-title">Tinnitus</div>
+                    <div class="effect-description">
+                        La sensación de zumbido o pitido en los oídos es una señal de daño auditivo que puede volverse permanente y afectar significativamente la calidad de vida.
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="detective-intro">
             <div class="detective-avatar">🕵️‍♂️</div>
             <h3>¡Bienvenido, Detective Sonoro!</h3>
-            <p>Tu misión es investigar a fondo la problemática del ruido en Suba. Utiliza las herramientas de investigación disponibles para recopilar información valiosa que te ayude a proponer soluciones efectivas.</p>
+            <p>Ahora que comprendes la verdadera dimensión del problema, es momento de investigar estrategias y soluciones. Utiliza las herramientas disponibles para recopilar información valiosa.</p>
         </div>
 
         <div class="sections-grid">
+            <!-- ESTRATEGIAS PARA CONSTRUCCIONES ACTUALIZADA -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">🏗️</div>
+                    <div>
+                        <h3>Soluciones para Construcciones</h3>
+                        <p>Estrategias técnicas para reducir el ruido en obras</p>
+                    </div>
+                </div>
+
+                <div class="strategy-category">
+                    <h4>1. Aislamiento y Reducción en la Fuente</h4>
+                    <div class="strategy-list">
+                        <div class="strategy-item">
+                            <strong>🛡️ Barreras Acústicas</strong>
+                            <p>Instalar vallas o pantallas acústicas alrededor del perímetro de la obra para absorber y desviar el sonido hacia zonas menos sensibles.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>🔇 Maquinaria Silenciosa</strong>
+                            <p>Utilizar equipos de construcción con motores más silenciosos o con tecnologías de reducción de ruido integradas.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>🧽 Materiales de Absorción</strong>
+                            <p>Cubrir los equipos más ruidosos con materiales que absorban el sonido, como espumas acústicas o mantas anti-ruido.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>⏰ Horarios Restringidos</strong>
+                            <p>Limitar los trabajos más ruidosos a horarios específicos del día, evitando las horas de clase en las escuelas y las épocas de anidación en los humedales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESTRATEGIAS PARA TRÁFICO ACTUALIZADA -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">🚗</div>
+                    <div>
+                        <h3>Soluciones para el Tráfico</h3>
+                        <p>Control en la fuente y barreras físicas</p>
+                    </div>
+                </div>
+
+                <div class="strategy-category">
+                    <h4>2. Control en la Fuente y Barreras Físicas</h4>
+                    <div class="strategy-list">
+                        <div class="strategy-item">
+                            <strong>🛣️ Pavimentos Fonoabsorbentes</strong>
+                            <p>Usar asfalto poroso en las vías cercanas a los humedales y colegios. Este material reduce el ruido de rodadura de los vehículos.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>🌱 Muros Verdes y Fosas</strong>
+                            <p>Construir muros vegetados o barreras de tierra (terraplenes) a lo largo de las vías más transitadas. Las plantas y el suelo son excelentes para absorber y atenuar el ruido.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>🚸 Señalización y Educación</strong>
+                            <p>Colocar señales de "Zona de Silencio" o "Zona de Humedal" para que los conductores eviten el uso innecesario del claxon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESTRATEGIAS PARA ENTORNOS EDUCATIVOS Y HUMEDALES ACTUALIZADA -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">🏫</div>
+                    <div>
+                        <h3>Soluciones para Entornos Educativos y Humedales</h3>
+                        <p>Medidas de protección específicas</p>
+                    </div>
+                </div>
+
+                <div class="strategy-category">
+                    <h4>3. Medidas de Protección Específicas</h4>
+                    <div class="strategy-list">
+                        <div class="strategy-item">
+                            <strong>🪟 Ventanas y Puertas Acústicas</strong>
+                            <p>En las instituciones educativas, reemplazar las ventanas y puertas por unas con doble acristalamiento o materiales aislantes para reducir significativamente la entrada de ruido externo.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>🌳 Vegetación y Paisajismo</strong>
+                            <p>Plantar árboles y arbustos densos en los límites de los colegios y alrededor de los humedales. La vegetación actúa como una barrera natural que absorbe el sonido.</p>
+                        </div>
+                        
+                        <div class="strategy-item">
+                            <strong>📊 Monitoreo Constante</strong>
+                            <p>Implementar sistemas de monitoreo de ruido en los puntos más críticos para evaluar la efectividad de las soluciones y ajustar las medidas según sea necesario.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- BIBLIOTECA VIRTUAL -->
             <div class="section-card">
                 <div class="section-header">
@@ -547,9 +807,9 @@
                                 <div class="play-overlay">▶️</div>
                             </div>
                             <div class="video-info">
-                                <h4>Dr. Carlos Ramírez - Biólogo CAR</h4>
+                                <h4>La Importancia de los Humedales en la Localidad de Suba, Bogotá</h4>
                                 <p>Especialista en ecosistemas acuáticos habla sobre los humedales de Suba y su importancia para la biodiversidad urbana.</p>
-                                <span class="video-duration">8:45 min</span>
+                                <span class="video-duration">1:51 min</span>
                                 <span class="external-link-badge">YouTube</span>
                             </div>
                         </div>
@@ -560,9 +820,9 @@
                                 <div class="play-overlay">▶️</div>
                             </div>
                             <div class="video-info">
-                                <h4>Ing. María González - Acústica</h4>
+                                <h4>¿Qué es la Contaminación Sonora? | Videos Educativos</h4>
                                 <p>Ingeniera de sonido explica los decibelios, la medición del ruido y sus efectos en el ambiente urbano.</p>
-                                <span class="video-duration">6:20 min</span>
+                                <span class="video-duration">4:30 min</span>
                                 <span class="external-link-badge">YouTube</span>
                             </div>
                         </div>
@@ -573,9 +833,9 @@
                                 <div class="play-overlay">▶️</div>
                             </div>
                             <div class="video-info">
-                                <h4>Dra. Ana Morales - Salud Auditiva</h4>
+                                <h4>Dra. Xavier González - Otitis, síntomas y tratamiento</h4>
                                 <p>Médica especialista en otorrinolaringología sobre los efectos del ruido en la salud humana.</p>
-                                <span class="video-duration">7:15 min</span>
+                                <span class="video-duration">5:04 min</span>
                                 <span class="external-link-badge">YouTube</span>
                             </div>
                         </div>
@@ -586,9 +846,9 @@
                                 <div class="play-overlay">▶️</div>
                             </div>
                             <div class="video-info">
-                                <h4>Testimonios de la Comunidad</h4>
+                                <h4>Día Internacional de la Conciencia sobre el Ruido</h4>
                                 <p>Vecinos de Suba comparten sus experiencias y opiniones sobre la contaminación sonora en el barrio.</p>
-                                <span class="video-duration">5:30 min</span>
+                                <span class="video-duration">2:30 min</span>
                                 <span class="external-link-badge">YouTube</span>
                             </div>
                         </div>
@@ -645,53 +905,6 @@
                 </div>
             </div>
 
-            <!-- ENTREVISTAS DIGITALES -->
-            <div class="section-card">
-                <div class="section-header">
-                    <div class="section-icon">🎤</div>
-                    <div>
-                        <h3>Entrevistas Digitales</h3>
-                        <p>Conversa con líderes comunitarios y expertos</p>
-                    </div>
-                </div>
-
-                <div class="interview-selector">
-                    <div class="character-card" onclick="selectCharacter('lider')">
-                        <span class="character-avatar">👨‍💼</span>
-                        <h4>Jorge Mendoza</h4>
-                        <p>Líder Comunitario de Suba</p>
-                    </div>
-
-                    <div class="character-card" onclick="selectCharacter('docente')">
-                        <span class="character-avatar">👩‍🏫</span>
-                        <h4>Profesora Carmen Ruiz</h4>
-                        <p>Docente del Colegio La Gaitana</p>
-                    </div>
-
-                    <div class="character-card" onclick="selectCharacter('joven')">
-                        <span class="character-avatar">👨‍🎓</span>
-                        <h4>Sebastián Torres</h4>
-                        <p>Joven Ambientalista</p>
-                    </div>
-
-                    <div class="character-card" onclick="selectCharacter('comerciante')">
-                        <span class="character-avatar">👩‍💼</span>
-                        <h4>María Elena Vargas</h4>
-                        <p>Comerciante Local</p>
-                    </div>
-                </div>
-
-                <div class="questions-panel" id="questionsPanel">
-                    <h4>🎯 Selecciona una pregunta para <span id="selectedCharacterName"></span>:</h4>
-                    <div id="questionsList"></div>
-                    <div class="answer-video" id="answerVideo">
-                        <h4 id="answerTitle"></h4>
-                        <div class="modal-video" id="answerVideoPlayer">🎬</div>
-                        <p id="answerText"></p>
-                    </div>
-                </div>
-            </div>
-
             <!-- DIARIO DE CAMPO -->
             <div class="section-card">
                 <div class="section-header">
@@ -738,80 +951,35 @@
     </div>
 
     <script>
+        // FUNCIÓN PARA EXPANDIR EFECTOS DE SALUD
+        function toggleEffect(card) {
+            // Cerrar todas las demás tarjetas
+            document.querySelectorAll('.effect-card').forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.classList.remove('expanded');
+                }
+            });
+            
+            // Alternar la tarjeta actual
+            card.classList.toggle('expanded');
+        }
+
         // ENLACES DE YOUTUBE PARA VIDEOS DE EXPERTOS
         const videoLinks = {
-            biologo: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Ecosistemas y biodiversidad
-            ingeniero: "https://www.youtube.com/watch?v=ZNno63ZO2Lw", // Acústica y medición de ruido
-            medico: "https://www.youtube.com/watch?v=BaW_jenozKc", // Efectos del ruido en la salud
-            comunidad: "https://www.youtube.com/watch?v=Y7dpJ0oseIA" // Testimonios comunitarios
+            biologo: "https://www.youtube.com/watch?v=QqHvh_ky7XU", // Ecosistemas y biodiversidad
+            ingeniero: "https://www.youtube.com/watch?v=LVhDNTZq2j4", // Acústica y medición de ruido
+            medico: "https://www.youtube.com/watch?v=cE2n3-HB1M4", // Efectos del ruido en la salud
+            comunidad: "https://www.youtube.com/watch?v=IM4DZDB9ZQo" // Testimonios comunitarios
         };
 
         // ENLACES PARA LECTURAS ESPECIALIZADAS
         const readingLinks = {
-            'ley-ruido': 'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=30532',
-            'casos-exito': 'https://repositorio.cepal.org/server/api/core/bitstreams/03b0a8a1-3f2c-4c99-8a2e-8c1a4ad3e654/content',
-            'tecnologias': 'https://www.sciencedirect.com/science/article/pii/S0003682X19300696',
-            'impacto-social': 'https://www.who.int/publications/i/item/9789241515204',
-            'economia-ruido': 'https://www.eea.europa.eu/publications/noise-in-europe-2014'
+            'ley-ruido': 'https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=175161',
+            'casos-exito': 'https://bogota.gov.co/mi-ciudad/ambiente/establecimientos-de-chapinero-aprendieron-sobre-el-control-del-ruido',
+            'tecnologias': 'https://www.soyinquieto.com/blog/soluciones-tecnologicas-para-reducir-la-contaminacion-acustica-en-la-ultima-milla/',
+            'impacto-social': 'https://www.fundacionaquae.org/contaminacion-acustica-medio-ambiente/amp/?gad_source=1&gad_campaignid=11892980301&gbraid=0AAAAABxiIaS_s1N9gfClhYuCZQFDfsgmD&gclid=Cj0KCQjw2IDFBhDCARIsABDKOJ7SVvzVHADL-56A8UQYhRLYdFONuxhdOuRs8leLsCxRk7AYZ5_8KQoaAuRmEALw_wcB',
+            'economia-ruido': 'https://revistas.unal.edu.co/index.php/ede/article/view/28642/28952'
         };
-
-        // DATOS DE LAS ENTREVISTAS (mantienen el contenido original)
-        const interviewData = {
-            lider: {
-                name: "Jorge Mendoza",
-                questions: [
-                    "¿Cuáles son las principales quejas de ruido que reciben en la Junta de Acción Comunal?",
-                    "¿Qué iniciativas comunitarias se han implementado para reducir el ruido?",
-                    "¿Cómo podría involucrar más a los jóvenes en las soluciones ambientales?"
-                ],
-                answers: [
-                    "Las principales quejas provienen del tráfico pesado en la Av. Suba y las construcciones sin horarios establecidos. Recibimos entre 15-20 quejas mensuales, especialmente de familias con niños pequeños y adultos mayores.",
-                    "Hemos organizado 'Domingos sin Ruido' donde cerramos algunas vías al tráfico pesado. También creamos un comité de vigilancia ciudadana que reporta infracciones. Logramos reducir el ruido dominical en un 40%.",
-                    "Los jóvenes tienen energía y creatividad que necesitamos. Propondría crear un 'Equipo Verde' de estudiantes que monitoreen el ruido con apps móviles y propongan soluciones innovadoras como jardines acústicos."
-                ]
-            },
-            docente: {
-                name: "Profesora Carmen Ruiz",
-                questions: [
-                    "¿Cómo afecta el ruido el proceso de aprendizaje en el colegio?",
-                    "¿Qué estrategias han implementado para mitigar el impacto del ruido?",
-                    "¿Cómo involucra a los estudiantes en la educación ambiental?"
-                ],
-                answers: [
-                    "El ruido interrumpe constantemente las clases. Los estudiantes se distraen cada vez que pasa un bus o hay construcción. Hemos notado que el rendimiento baja en las aulas que dan a la Avenida Suba.",
-                    "Instalamos cortinas acústicas donadas por padres de familia y reorganizamos los horarios para las clases que requieren más concentración temprano en la mañana. También hacemos pausas activas cuando el ruido es muy fuerte.",
-                    "Creamos el proyecto 'Eco-Guardianes' donde los estudiantes miden el ruido con decibelímetros caseros y proponen soluciones. Ellos mismos diseñaron carteles pidiendo respeto por las zonas escolares."
-                ]
-            },
-            joven: {
-                name: "Sebastián Torres",
-                questions: [
-                    "¿Qué te motivó a involucrarte en temas ambientales?",
-                    "¿Cómo perciben los jóvenes la problemática del ruido en Suba?",
-                    "¿Qué soluciones propones desde la perspectiva juvenil?"
-                ],
-                answers: [
-                    "Vivo frente al humedal y cada año veo menos aves. Mi abuela me contaba que antes se escuchaban muchos tipos de cantos, ahora solo ruido de carros. Eso me motivó a estudiar el tema y actuar.",
-                    "Muchos jóvenes ni siquiera notan el problema porque crecimos con el ruido. Usamos audífonos constantemente para bloquearlo. Es como una generación 'sorda' al problema ambiental.",
-                    "Propongo crear una app donde los vecinos reporten ruido en tiempo real, como 'Waze' pero para contaminación sonora. También mapas de ruido colaborativos y retos virales para promover el 'silencio consciente'."
-                ]
-            },
-            comerciante: {
-                name: "María Elena Vargas",
-                questions: [
-                    "¿Cómo afecta el ruido a su negocio y clientes?",
-                    "¿Qué balance encuentra entre actividad comercial y tranquilidad?",
-                    "¿Estaría dispuesta a participar en iniciativas de reducción de ruido?"
-                ],
-                answers: [
-                    "El ruido ahuyenta clientes, especialmente adultos mayores que no pueden conversar tranquilos. Durante las horas pico es imposible hablar por teléfono. Algunos clientes se van sin comprar porque no soportan el bullicio.",
-                    "Entiendo que el comercio genera ruido, pero hay límites. Los vendedores ambulantes con parlantes muy fuertes nos perjudican a todos. Necesitamos regulación que proteja tanto el comercio como la calidad de vida.",
-                    "Claro que sí. Podríamos hacer 'Horas Silenciosas' donde bajamos la música y pedimos a los clientes hablar más bajo. También apoyaría campañas de educación y ponría carteles sobre el respeto acústico."
-                ]
-            }
-        };
-
-        let selectedCharacter = null;
 
         // FUNCIÓN PARA CAMBIAR TABS
         function switchTab(tabName) {
@@ -846,53 +1014,6 @@
             } else {
                 alert('📖 Documento no disponible en este momento. Por favor, intenta más tarde.');
             }
-        }
-
-        // FUNCIÓN PARA SELECCIONAR PERSONAJE
-        function selectCharacter(characterType) {
-            // Remover selección anterior
-            document.querySelectorAll('.character-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-
-            // Seleccionar nuevo personaje
-            event.target.closest('.character-card').classList.add('selected');
-            selectedCharacter = characterType;
-
-            // Mostrar panel de preguntas
-            const questionsPanel = document.getElementById('questionsPanel');
-            questionsPanel.classList.add('active');
-
-            // Actualizar información del personaje
-            const characterData = interviewData[characterType];
-            document.getElementById('selectedCharacterName').textContent = characterData.name;
-
-            // Generar botones de preguntas
-            const questionsList = document.getElementById('questionsList');
-            questionsList.innerHTML = '';
-            
-            characterData.questions.forEach((question, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'question-btn';
-                btn.textContent = `${index + 1}. ${question}`;
-                btn.onclick = () => showAnswer(index);
-                questionsList.appendChild(btn);
-            });
-
-            // Ocultar respuesta anterior
-            document.getElementById('answerVideo').classList.remove('show');
-        }
-
-        // FUNCIÓN PARA MOSTRAR RESPUESTA
-        function showAnswer(questionIndex) {
-            const characterData = interviewData[selectedCharacter];
-            const answer = characterData.answers[questionIndex];
-            const question = characterData.questions[questionIndex];
-
-            document.getElementById('answerTitle').textContent = `Respuesta de ${characterData.name}:`;
-            document.getElementById('answerText').textContent = answer;
-            
-            document.getElementById('answerVideo').classList.add('show');
         }
 
         // FUNCIÓN PARA DESCARGAR DIARIO
@@ -948,6 +1069,22 @@ Institución: [Tu Colegio]
 
             alert('📥 ¡Diario descargado exitosamente!\n\nYa puedes comenzar tu investigación de campo. Recuerda llevar el diario impreso o en tu dispositivo móvil.');
         }
+
+        // ANIMACIÓN AL CARGAR LA PÁGINA
+        window.addEventListener('load', function() {
+            // Agregar efecto de entrada a las tarjetas
+            const cards = document.querySelectorAll('.effect-card, .strategy-item');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
     </script>
 </body>
 </html>
